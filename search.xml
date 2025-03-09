@@ -31,6 +31,33 @@
     
     
     <entry>
+      <title>打包绿色免安装程序</title>
+      <link href="/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/"/>
+      <url>/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<p><strong>下载enigma virtual box</strong></p><p><a href="https://www.enigmaprotector.com/en/downloads.html">https://www.enigmaprotector.com/en/downloads.html</a></p><p>enigmavb.exe</p><p>1、文件选项：</p><p>文件-增加-增加文件夹([递归)(X)</p><p>文件夹选项-勾选启用文件虚拟化，压缩文件</p><p>2、注册表：</p><p>注册表选项-勾选启用注册表虚拟化</p><p>3、最后执行封包</p><p>参考：</p><p><a href="https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159">https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TOOLS </category>
+          
+          <category> Proskill </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Proskill </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>阿里云镜像服务</title>
       <link href="/2025/03/08/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/"/>
       <url>/2025/03/08/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</url>
@@ -52,33 +79,6 @@
             <tag> docker </tag>
             
             <tag> 阿里云 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>打包绿色免安装程序</title>
-      <link href="/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/"/>
-      <url>/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/</url>
-      
-        <content type="html"><![CDATA[<p><strong>下载enigma virtual box</strong></p><p><a href="https://www.enigmaprotector.com/en/downloads.html">https://www.enigmaprotector.com/en/downloads.html</a></p><p>enigmavb.exe</p><p>1、文件选项：</p><p>文件-增加-增加文件夹([递归)(X)</p><p>文件夹选项-勾选启用文件虚拟化，压缩文件</p><p>2、注册表：</p><p>注册表选项-勾选启用注册表虚拟化</p><p>3、最后执行封包</p><p>参考：</p><p><a href="https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159">https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> TOOLS </category>
-          
-          <category> Proskill </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Proskill </tag>
             
         </tags>
       
