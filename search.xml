@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>docker命令</title>
+      <link href="/2025/03/08/docker%E5%91%BD%E4%BB%A4/"/>
+      <url>/2025/03/08/docker%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="安装-Docker"><a href="#安装-Docker" class="headerlink" title="安装 Docker"></a>安装 Docker</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure><p>或者</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure><h2 id="安装-Docker-Compose"><a href="#安装-Docker-Compose" class="headerlink" title="安装 Docker-Compose"></a>安装 Docker-Compose</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L &quot;https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line">sudo chmod +x /usr/local/bin/docker-compose</span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure><h2 id="Docker-设置国内镜像源"><a href="#Docker-设置国内镜像源" class="headerlink" title="Docker 设置国内镜像源"></a>Docker 设置国内镜像源</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://docker.1ms.run&quot;,</span><br><span class="line">  &quot;https://hub.rat.dev&quot;,</span><br><span class="line">&quot;https://docker.1panel.live&quot;</span><br><span class="line">]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="命令："><a href="#命令：" class="headerlink" title="命令："></a>命令：</h2><ul><li><p>docker images</p></li><li><p>docker ps -q 列出所有运行中容器的ID。</p></li><li><p>docker stop 停止一个或多个运行中的容器。</p></li><li><p>docker rm 移除一个或docker rmi多个容器。</p></li><li><p>docker rm 删除容器</p></li><li><p>docker rmi 删除镜像</p></li><li><p>删除所有容器 docker rm -f  $(docker ps -a -q)   </p></li><li><p>启动 docker-compose -p xxx up -d</p></li></ul><p>停止所有运行中的Docker容器，可以使用以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -q) </span><br></pre></td></tr></table></figure><p>如果你想要同时停止并移除这些容器，可以使用以下命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm $(docker stop $(docker ps -a -q))  </span><br></pre></td></tr></table></figure><p>这将列出所有活动的容器，包括容器ID、创建时间、状态和其他相关信息。</p><p>如果你想查看所有容器，无论它们的状态如何（运行、停止等），可以使用 <code>-a</code> 或 <code>--all</code> 选项：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a </span><br></pre></td></tr></table></figure><p>如果你只想获取容器ID，可以使用<code>--format</code>来定制输出：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -q</span><br></pre></td></tr></table></figure><h2 id="指定端口启动创建进入容器"><a href="#指定端口启动创建进入容器" class="headerlink" title="指定端口启动创建进入容器"></a>指定端口启动创建进入容器</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9992:80 -p 8882:8888 -it ubuntu /bin/bash</span><br><span class="line">docker run --name web1 -p 9991:80 -p 8881:8888 -it centos /bin/bash</span><br></pre></td></tr></table></figure><h2 id="导出导入镜像"><a href="#导出导入镜像" class="headerlink" title="导出导入镜像"></a>导出导入镜像</h2><p>export\import 导入导出</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker export web &gt; /home/docker_web.tar</span><br><span class="line">docker import /home/docker_web.tar</span><br></pre></td></tr></table></figure><p>save\load 导入导出</p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker save 9610cfc68e8d &gt; /home/docker_web.tar</span><br><span class="line">docker load &lt; /home/docker_web.tar</span><br></pre></td></tr></table></figure><p>export\import 与 save\load 的区别：</p><ul><li>export\import 导出的镜像文件大小要小于 save\load 导出的镜像</li><li>export\import 是根据容器拿到的镜像，再导入时会丢失镜像所有的历史，所以无法进行回滚操作；而 save\load 的镜像，没有丢失镜像的历史，可以回滚到之前的层。</li></ul><p>核心原因是 export 是针对容器的导出，所以只有所有层组合的最终版本；而 save 则是针对镜像的，所以可以看到每一层的信息。</p><h2 id="端口占用"><a href="#端口占用" class="headerlink" title="端口占用"></a>端口占用</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker rm $(docker stop $(docker ps -a -q))  </span><br><span class="line">sudo rm /var/lib/docker/network/files/local-kv.db</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br></pre></td></tr></table></figure><h2 id="容器操作"><a href="#容器操作" class="headerlink" title="容器操作"></a>容器操作</h2><p>docker ps -a</p><p>查看容器详细信息</p><p>docker inspect d8f56b49b</p><p>查看容器的实时日志</p><p>docker logs -f d8f56b49b</p><p> docker exec -u www-data -it d8f56b49b &#x2F;bin&#x2F;bash</p><p>systemctl status docker</p><p>修改镜像名字<br>docker tag <image-id> xxx:1.8.3</p><h2 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker cp 本地文件路径 ID全称:容器路径</span><br><span class="line"></span><br><span class="line"># 或者</span><br><span class="line"></span><br><span class="line">docker cp ID全称:容器文件路径 本地路径</span><br></pre></td></tr></table></figure><h2 id="Docker-资源清理"><a href="#Docker-资源清理" class="headerlink" title="Docker 资源清理"></a>Docker 资源清理</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker container prune# 删除所有退出状态的容器</span><br><span class="line">docker image prune# 删除 dangling 或所有未被使用的镜像</span><br><span class="line">docker network prune# 删除所有未使用的网络</span><br><span class="line">docker volume prune# 删除未被使用的数据卷</span><br><span class="line">docker system prune# 删除已停止的容器、dangling 镜像、未被容器引用的 network 和构建过程中的 cache，安全起见，这个命令默认不会删除那些未被任何容器引用的数据卷，如果需要同时删除这些数据卷，你需要显式的指定 --volumns 参数</span><br><span class="line">docker system prune --all --force --volumns # 这次不仅会删除数据卷，而且连确认的过程都没有了！注意，使用 --all 参数后会删除所有未被引用的镜像而不仅仅是 dangling 镜像</span><br></pre></td></tr></table></figure><h2 id="卸载Docker"><a href="#卸载Docker" class="headerlink" title="卸载Docker"></a>卸载Docker</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum list installed | grep docker</span><br><span class="line">yum -y remove docker.x86_64</span><br></pre></td></tr></table></figure><h2 id="卸载Docker-compose"><a href="#卸载Docker-compose" class="headerlink" title="卸载Docker-compose"></a>卸载Docker-compose</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm /usr/local/bin/docker-compose</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 云安全 </category>
+          
+          <category> docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>打包绿色免安装程序</title>
+      <link href="/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/"/>
+      <url>/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<p><strong>下载enigma virtual box</strong></p><p><a href="https://www.enigmaprotector.com/en/downloads.html">https://www.enigmaprotector.com/en/downloads.html</a></p><p>enigmavb.exe</p><p>1、文件选项：</p><p>文件-增加-增加文件夹([递归)(X)</p><p>文件夹选项-勾选启用文件虚拟化，压缩文件</p><p>2、注册表：</p><p>注册表选项-勾选启用注册表虚拟化</p><p>3、最后执行封包</p><p>参考：</p><p><a href="https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159">https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TOOLS </category>
+          
+          <category> Proskill </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Proskill </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>阿里云镜像服务</title>
+      <link href="/2025/03/08/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/"/>
+      <url>/2025/03/08/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="私有需要认证"><a href="#私有需要认证" class="headerlink" title="私有需要认证"></a>私有需要认证</h1><p><a href="https://cr.console.aliyun.com/cn-hangzhou/instances">https://cr.console.aliyun.com/cn-hangzhou/instances</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username=r_r_r_r crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1</span><br></pre></td></tr></table></figure><h2 id="docker修改镜像名称"><a href="#docker修改镜像名称" class="headerlink" title="docker修改镜像名称"></a>docker修改镜像名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line">docker tag crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1  redis:7.4.1</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/image-20250213223419561.png" alt="image-20250213223419561"></p><p>此时生成新的，需要删除旧的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1</span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/image-20250213223552555.png" alt="image-20250213223552555"></p><h1 id="公开则不需要认证"><a href="#公开则不需要认证" class="headerlink" title="公开则不需要认证"></a>公开则不需要认证</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br></pre></td></tr></table></figure><p>ALIYUN_REGISTRY_PASSWORD&#x3D;Aliyunxxxxxxxxx</p><h1 id="上传push到阿里云"><a href="#上传push到阿里云" class="headerlink" title="上传push到阿里云"></a>上传push到阿里云</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker login --username=r_r_r_r crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br><span class="line"></span><br><span class="line">docker tag d2fa7cd1de2b crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/java:21</span><br><span class="line"></span><br><span class="line">docker push crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/java:21</span><br></pre></td></tr></table></figure><h3 id="需要确保阿里云实例命名空间开启"><a href="#需要确保阿里云实例命名空间开启" class="headerlink" title="需要确保阿里云实例命名空间开启"></a>需要确保阿里云实例命名空间开启</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">报错：</span><br><span class="line">denied: requested access to the resource is denied</span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/image-20250215224640359.png" alt="image-20250215224640359"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 云安全 </category>
+          
+          <category> docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> 阿里云 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
