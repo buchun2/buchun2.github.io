@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>打包绿色免安装程序</title>
-      <link href="/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/"/>
-      <url>/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/</url>
-      
-        <content type="html"><![CDATA[<p><strong>下载enigma virtual box</strong></p><p><a href="https://www.enigmaprotector.com/en/downloads.html">https://www.enigmaprotector.com/en/downloads.html</a></p><p>enigmavb.exe</p><p>1、文件选项：</p><p>文件-增加-增加文件夹([递归)(X)</p><p>文件夹选项-勾选启用文件虚拟化，压缩文件</p><p>2、注册表：</p><p>注册表选项-勾选启用注册表虚拟化</p><p>3、最后执行封包</p><p>参考：</p><p><a href="https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159">https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159</a></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> TOOLS </category>
-          
-          <category> Proskill </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Proskill </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>docker命令</title>
       <link href="/2025/03/08/docker%E5%91%BD%E4%BB%A4/"/>
       <url>/2025/03/08/docker%E5%91%BD%E4%BB%A4/</url>
@@ -58,11 +31,38 @@
     
     
     <entry>
+      <title>打包绿色免安装程序</title>
+      <link href="/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/"/>
+      <url>/2025/03/08/%E6%89%93%E5%8C%85%E7%BB%BF%E8%89%B2%E5%85%8D%E5%AE%89%E8%A3%85%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[<p><strong>下载enigma virtual box</strong></p><p><a href="https://www.enigmaprotector.com/en/downloads.html">https://www.enigmaprotector.com/en/downloads.html</a></p><p>enigmavb.exe</p><p>1、文件选项：</p><p>文件-增加-增加文件夹([递归)(X)</p><p>文件夹选项-勾选启用文件虚拟化，压缩文件</p><p>2、注册表：</p><p>注册表选项-勾选启用注册表虚拟化</p><p>3、最后执行封包</p><p>参考：</p><p><a href="https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159">https://www.bilibili.com/video/BV1sP41197A9/?vd_source=4efa777d46268bbd7644334c25d41159</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> TOOLS </category>
+          
+          <category> Proskill </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Proskill </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>阿里云镜像服务</title>
       <link href="/2025/03/08/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/"/>
       <url>/2025/03/08/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1/</url>
       
-        <content type="html"><![CDATA[<h1 id="私有需要认证"><a href="#私有需要认证" class="headerlink" title="私有需要认证"></a>私有需要认证</h1><p><a href="https://cr.console.aliyun.com/cn-hangzhou/instances">https://cr.console.aliyun.com/cn-hangzhou/instances</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username=r_r_r_r crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1</span><br></pre></td></tr></table></figure><h2 id="docker修改镜像名称"><a href="#docker修改镜像名称" class="headerlink" title="docker修改镜像名称"></a>docker修改镜像名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line">docker tag crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1  redis:7.4.1</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/image-20250213223419561.png" alt="image-20250213223419561"></p><p>此时生成新的，需要删除旧的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1</span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/image-20250213223552555.png" alt="image-20250213223552555"></p><h1 id="公开则不需要认证"><a href="#公开则不需要认证" class="headerlink" title="公开则不需要认证"></a>公开则不需要认证</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br></pre></td></tr></table></figure><p>ALIYUN_REGISTRY_PASSWORD&#x3D;Aliyunxxxxxxxxx</p><h1 id="上传push到阿里云"><a href="#上传push到阿里云" class="headerlink" title="上传push到阿里云"></a>上传push到阿里云</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker login --username=r_r_r_r crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br><span class="line"></span><br><span class="line">docker tag d2fa7cd1de2b crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/java:21</span><br><span class="line"></span><br><span class="line">docker push crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/java:21</span><br></pre></td></tr></table></figure><h3 id="需要确保阿里云实例命名空间开启"><a href="#需要确保阿里云实例命名空间开启" class="headerlink" title="需要确保阿里云实例命名空间开启"></a>需要确保阿里云实例命名空间开启</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">报错：</span><br><span class="line">denied: requested access to the resource is denied</span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/image-20250215224640359.png" alt="image-20250215224640359"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="私有需要认证"><a href="#私有需要认证" class="headerlink" title="私有需要认证"></a>私有需要认证</h1><p><a href="https://cr.console.aliyun.com/cn-hangzhou/instances">https://cr.console.aliyun.com/cn-hangzhou/instances</a></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker login --username=r_r_r_r crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1</span><br></pre></td></tr></table></figure><h2 id="docker修改镜像名称"><a href="#docker修改镜像名称" class="headerlink" title="docker修改镜像名称"></a>docker修改镜像名称</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]</span><br><span class="line">docker tag crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1  redis:7.4.1</span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1.assets/image-20250213223419561.png" alt="image-20250213223419561"></p><p>此时生成新的，需要删除旧的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/redis:7.4.1</span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1.assets/image-20250213223552555.png" alt="image-20250213223552555"></p><h1 id="公开则不需要认证"><a href="#公开则不需要认证" class="headerlink" title="公开则不需要认证"></a>公开则不需要认证</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br></pre></td></tr></table></figure><p>ALIYUN_REGISTRY_PASSWORD&#x3D;Aliyunxxxxxxxxx</p><h1 id="上传push到阿里云"><a href="#上传push到阿里云" class="headerlink" title="上传push到阿里云"></a>上传push到阿里云</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker login --username=r_r_r_r crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com</span><br><span class="line"></span><br><span class="line">docker tag d2fa7cd1de2b crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/java:21</span><br><span class="line"></span><br><span class="line">docker push crpi-oep0r0ys6k2kecir.cn-guangzhou.personal.cr.aliyuncs.com/netimages/java:21</span><br></pre></td></tr></table></figure><h3 id="需要确保阿里云实例命名空间开启"><a href="#需要确保阿里云实例命名空间开启" class="headerlink" title="需要确保阿里云实例命名空间开启"></a>需要确保阿里云实例命名空间开启</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">报错：</span><br><span class="line">denied: requested access to the resource is denied</span><br></pre></td></tr></table></figure><p><img src="/Post-Asset-Folder/%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1.assets/image-20250215224640359.png" alt="image-20250215224640359"></p>]]></content>
       
       
       <categories>
