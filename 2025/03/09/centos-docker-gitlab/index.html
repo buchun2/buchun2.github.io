@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"buchun2.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="DevOps环境搭建，docker部署gitlab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker gitlab">
+<meta property="og:url" content="https://buchun2.github.io/2025/03/09/centos-docker-gitlab/index.html">
+<meta property="og:site_name" content="夜落">
+<meta property="og:description" content="DevOps环境搭建，docker部署gitlab">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213164650474.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213164922229.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165139361.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165234663.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165647049.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165726482.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213170511053.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213170526685.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213170823360.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213171159212.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213193455496.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213204133508.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213224037112.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213224141023.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213225135054.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213225843681.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213225707019.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214121014256.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214122834387.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214130933080.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214123125211.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214152355721.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214154920143.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214155050120.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214155124935.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214155227730.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214160205635.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214160231589.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250216151831276.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250216152712573.png">
+<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250216142635401.png">
+<meta property="article:published_time" content="2025-03-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-09T06:02:28.580Z">
+<meta property="article:author" content="夜落">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="gitlab">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://buchun2.github.io/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213164650474.png">
+
+
+<link rel="canonical" href="https://buchun2.github.io/2025/03/09/centos-docker-gitlab/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://buchun2.github.io/2025/03/09/centos-docker-gitlab/","path":"2025/03/09/centos-docker-gitlab/","title":"docker gitlab"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>docker gitlab | 夜落</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">夜落</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">夜落的空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CI-CD%EF%BC%881%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">CI&#x2F;CD（1）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">docker安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%AE%89%E8%A3%85%E5%89%8D%E5%87%86%E5%A4%87"><span class="nav-number">2.1.</span> <span class="nav-text">一、安装前准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85Docker"><span class="nav-number">2.2.</span> <span class="nav-text">二、安装Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装依赖包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2Docker%E6%BA%90"><span class="nav-number">2.2.2.</span> <span class="nav-text">换Docker源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Docker"><span class="nav-number">2.2.3.</span> <span class="nav-text">安装Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8Docker%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.2.4.</span> <span class="nav-text">启动Docker服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81Docker%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F"><span class="nav-number">2.2.5.</span> <span class="nav-text">验证Docker是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%AE%89%E8%A3%85%E6%8C%87%E5%AE%9A%E7%89%88%E6%9C%AC%E7%9A%84Docker"><span class="nav-number">2.3.</span> <span class="nav-text">三、安装指定版本的Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%89%E8%A3%85Docker-Compose"><span class="nav-number">2.4.</span> <span class="nav-text">四、安装Docker-Compose</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85gitlab"><span class="nav-number">3.</span> <span class="nav-text">安装gitlab</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">3.1.</span> <span class="nav-text">关闭防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2gitlab"><span class="nav-number">3.2.</span> <span class="nav-text">查询gitlab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F%E5%8A%A0%E9%80%9F%EF%BC%88%E5%A4%B1%E8%B4%A5%EF%BC%89-%E6%8D%A2%E4%BB%A5%E4%B8%8B%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80"><span class="nav-number">3.3.</span> <span class="nav-text">方法一：使用阿里云镜像加速（失败）,换以下镜像地址</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="nav-number">3.3.1.</span> <span class="nav-text">拉取镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%88%9B%E5%BB%BA%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%B9%E5%99%A8%E9%95%9C%E5%83%8F%E6%9C%8D%E5%8A%A1-md"><span class="nav-number">3.4.</span> <span class="nav-text">方法二：创建阿里云容器镜像服务.md</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%B1%E8%B4%A5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E7%9C%8B%E4%B8%8B%E9%9D%A2%E2%80%9C%E5%8E%9F%E5%9B%A0%E2%80%9D%E7%9B%AE%E5%BD%95"><span class="nav-number">3.5.</span> <span class="nav-text">失败，直接看下面“原因”目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEdocker-compose-yml"><span class="nav-number">3.6.</span> <span class="nav-text">配置docker-compose.yml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">3.7.</span> <span class="nav-text">运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E6%9C%BA%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%88%B0http-192-168-128-151-8929"><span class="nav-number">3.8.</span> <span class="nav-text">主机访问不到http:&#x2F;&#x2F;192.168.128.151:8929&#x2F;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Docker%E7%9A%84IP%E5%9C%B0%E5%9D%80"><span class="nav-number">3.8.1.</span> <span class="nav-text">使用Docker的IP地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E7%9A%84%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E5%8A%9F%E8%83%BD"><span class="nav-number">3.8.2.</span> <span class="nav-text">Docker的端口映射功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2%E9%95%9C%E5%83%8F%E8%AF%95%E4%B8%80%E4%B8%8B%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">3.8.3.</span> <span class="nav-text">换镜像试一下命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AE"><span class="nav-number">3.8.4.</span> <span class="nav-text">修改容器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9gitlab-yml"><span class="nav-number">3.8.5.</span> <span class="nav-text">修改gitlab.yml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%90%AF%E5%8A%A8gitlab%E6%9C%8D%E5%8A%A1"><span class="nav-number">3.8.6.</span> <span class="nav-text">重新启动gitlab服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0%EF%BC%8C%E4%B8%80%E7%A7%8D%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">3.9.</span> <span class="nav-text">原因，一种解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%8A%A0-h-192-168-128-151"><span class="nav-number">3.9.1.</span> <span class="nav-text">使用命令行加-h 192.168.128.151</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bgitlab%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81"><span class="nav-number">3.10.</span> <span class="nav-text">查看gitlab默认密码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="nav-number">3.10.1.</span> <span class="nav-text">修改密码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%EF%BC%9Adocker-%E9%87%8D%E5%90%AF-%E6%8C%82%E8%B5%B7%E5%90%8E%E7%AB%AF%E5%8F%A3%E5%8F%88%E8%AE%BF%E9%97%AE%E4%B8%8D%E5%88%B0"><span class="nav-number">4.</span> <span class="nav-text">解决：docker 重启&#x2F;挂起后端口又访问不到</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E6%9F%A5%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="nav-number">4.0.1.</span> <span class="nav-text">排查原因：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%8E%92%E6%9F%A5"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">路由排查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bdocker-%E6%97%A5%E5%BF%97"><span class="nav-number">4.0.1.2.</span> <span class="nav-text">查看docker 日志</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">4.0.2.</span> <span class="nav-text">解决办法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%B8%85%E7%90%86docker0"><span class="nav-number">4.0.2.1.</span> <span class="nav-text">方法一：清理docker0</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9ADocker-%E7%BD%91%E7%BB%9C%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98"><span class="nav-number">4.0.2.2.</span> <span class="nav-text">方法二：Docker 网络缓存问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%89%EF%BC%9Adocker0-%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE%E6%8D%9F%E5%9D%8F"><span class="nav-number">4.0.2.3.</span> <span class="nav-text">方法三：docker0 网络配置损坏</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">夜落</p>
+  <div class="site-description" itemprop="description">个人笔记</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://buchun2.github.io/2025/03/09/centos-docker-gitlab/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="夜落">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜落">
+      <meta itemprop="description" content="个人笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="docker gitlab | 夜落">
+      <meta itemprop="description" content="DevOps环境搭建，docker部署gitlab">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          docker gitlab
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-09 00:00:00 / 修改时间：14:02:28" itemprop="dateCreated datePublished" datetime="2025-03-09T00:00:00+08:00">2025-03-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DevOps%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">DevOps环境搭建</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/DevOps%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/gitlab/" itemprop="url" rel="index"><span itemprop="name">gitlab</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">DevOps环境搭建，docker部署gitlab</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="CI-CD（1）"><a href="#CI-CD（1）" class="headerlink" title="CI&#x2F;CD（1）"></a>CI&#x2F;CD（1）</h1><h1 id="docker安装"><a href="#docker安装" class="headerlink" title="docker安装"></a>docker安装</h1><h2 id="一、安装前准备"><a href="#一、安装前准备" class="headerlink" title="一、安装前准备"></a>一、安装前准备</h2><p>在安装Docker与Docker-Compose之前，需要先卸载CentOS上可能已经安装的旧版本的Docker。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum remove docker docker-common docker-selinux docker-engine</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、安装Docker"><a href="#二、安装Docker" class="headerlink" title="二、安装Docker"></a>二、安装Docker</h2><h3 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h3><p>在安装Docker之前，需要先安装一些依赖包。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213164650474.png" alt="image-20250213164650474"></p>
+<h3 id="换Docker源"><a href="#换Docker源" class="headerlink" title="换Docker源"></a>换Docker源</h3><p>换Docker源，以便能够下载并安装最新版本的Docker。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213164922229.png" alt="image-20250213164922229"></p>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><p>通过yum命令安装Docker。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165139361.png" alt="image-20250213165139361"></p>
+<h3 id="启动Docker服务"><a href="#启动Docker服务" class="headerlink" title="启动Docker服务"></a>启动Docker服务</h3><p>安装完成后，需要启动Docker服务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证Docker是否安装成功"><a href="#验证Docker是否安装成功" class="headerlink" title="验证Docker是否安装成功"></a>验证Docker是否安装成功</h3><p>可以通过查看Docker版本的方式来验证Docker是否安装成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker --version</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165234663.png" alt="image-20250213165234663"></p>
+<h2 id="三、安装指定版本的Docker"><a href="#三、安装指定版本的Docker" class="headerlink" title="三、安装指定版本的Docker"></a>三、安装指定版本的Docker</h2><p>如果需要安装指定版本的Docker，可以先查看yum源支持的Docker版本，然后通过指定版本号的方式来安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list docker-ce --showduplicates | sort -r</span><br></pre></td></tr></table></figure>
+
+<p>例如，要安装19.03.9版本的Docker，可以执行以下命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install docker-ce-19.03.9 docker-ce-cli-19.03.9 containerd.io</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、安装Docker-Compose"><a href="#四、安装Docker-Compose" class="headerlink" title="四、安装Docker-Compose"></a>四、安装Docker-Compose</h2><p>Docker-Compose可以通过二进制安装的方式进行安装。首先需要下载对应版本的Docker-Compose二进制文件，并将其添加到系统路径中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 下载Docker-Compose二进制文件</span><br><span class="line">curl -L &quot;https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose</span><br><span class="line"># 添加执行权限</span><br><span class="line">chmod +x /usr/local/bin/docker-compose</span><br><span class="line"># 验证安装是否成功</span><br><span class="line">docker-compose --version</span><br><span class="line"></span><br><span class="line">建立软连接</span><br><span class="line">ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165647049.png" alt="image-20250213165647049"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213165726482.png" alt="image-20250213165726482"></p>
+<p>至此，CentOS系统下的Docker与Docker-Compose安装完成。接下来，就可以使用Docker和Docker-Compose来管理和部署容器化应用了。</p>
+<h1 id="安装gitlab"><a href="#安装gitlab" class="headerlink" title="安装gitlab"></a>安装gitlab</h1><h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl status firewalld</span><br><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213170511053.png" alt="image-20250213170511053"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213170526685.png" alt="image-20250213170526685"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@192 ~]# cd /usr/local</span><br><span class="line">[root@192 local]# mkdir docker</span><br><span class="line">[root@192 local]# cd  docker/</span><br><span class="line">[root@192 docker]# mkdir gitlab_docker</span><br><span class="line">[root@192 docker]# cd gitlab_docker/</span><br><span class="line">创建</span><br><span class="line">/usr/local/docker/gitlab_docker/docker-compose.yml</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213170823360.png" alt="image-20250213170823360"></p>
+<h2 id="查询gitlab"><a href="#查询gitlab" class="headerlink" title="查询gitlab"></a>查询gitlab</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search gitlab</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213171159212.png" alt="image-20250213171159212"></p>
+<h2 id="方法一：使用阿里云镜像加速（失败）-换以下镜像地址"><a href="#方法一：使用阿里云镜像加速（失败）-换以下镜像地址" class="headerlink" title="方法一：使用阿里云镜像加速（失败）,换以下镜像地址"></a>方法一：使用阿里云镜像加速（失败）,换以下镜像地址</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /etc/docker</span><br><span class="line">sudo tee /etc/docker/daemon.json &lt;&lt;-&#x27;EOF&#x27;</span><br><span class="line">&#123;</span><br><span class="line">  &quot;registry-mirrors&quot;: [&quot;https://docker.1ms.run&quot;,</span><br><span class="line">  						&quot;https://hub.rat.dev&quot;,</span><br><span class="line">						&quot;https://docker.1panel.live&quot;</span><br><span class="line">						]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl restart docker</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull gitlab/gitlab-ce:latest</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213193455496.png" alt="image-20250213193455496"></p>
+<h2 id="方法二：创建阿里云容器镜像服务-md"><a href="#方法二：创建阿里云容器镜像服务-md" class="headerlink" title="方法二：创建阿里云容器镜像服务.md"></a>方法二：创建阿里云容器镜像服务.md</h2><p>DockerToAliRepo</p>
+<h2 id="失败，直接看下面“原因”目录"><a href="#失败，直接看下面“原因”目录" class="headerlink" title="失败，直接看下面“原因”目录"></a>失败，直接看下面“原因”目录</h2><h2 id="配置docker-compose-yml"><a href="#配置docker-compose-yml" class="headerlink" title="配置docker-compose.yml"></a>配置docker-compose.yml</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">不需要版本号</span><br><span class="line">services:</span><br><span class="line">  gitlab:</span><br><span class="line">    image: &#x27;gitlab/gitlab-ce:latest&#x27;</span><br><span class="line">    container_name: gitlab</span><br><span class="line">    restart: always</span><br><span class="line">    environment:</span><br><span class="line">        GITLAB_OMNIBUS_CONFIG: |</span><br><span class="line">        external_url &#x27;http://192.168.128.151: 8929&#x27;</span><br><span class="line">        gitlab_rails[&#x27;gitlab_shell_ssh_port&#x27;]: 2224</span><br><span class="line">    ports:</span><br><span class="line">      - &#x27;8929:8929&#x27;</span><br><span class="line">      - &#x27;2224:2224&#x27;</span><br><span class="line">    volumes:</span><br><span class="line">      - &#x27;./config:/etc/gitlab&#x27;</span><br><span class="line">      - &#x27;./logs:/var/log/gitlab&#x27;</span><br><span class="line">      - &#x27;./data:/var/opt/gitlab&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213204133508.png" alt="image-20250213204133508"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">查看运行日志</span><br><span class="line">docker-compose logs -f</span><br></pre></td></tr></table></figure>
+
+<h2 id="主机访问不到http-192-168-128-151-8929"><a href="#主机访问不到http-192-168-128-151-8929" class="headerlink" title="主机访问不到http://192.168.128.151:8929/"></a>主机访问不到<a target="_blank" rel="noopener" href="http://192.168.128.151:8929/">http://192.168.128.151:8929/</a></h2><p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213224037112.png" alt="image-20250213224037112"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect  a2ff36851466 | grep Gateway</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213224141023.png" alt="image-20250213224141023"></p>
+<h3 id="使用Docker的IP地址"><a href="#使用Docker的IP地址" class="headerlink" title="使用Docker的IP地址"></a>使用Docker的IP地址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker inspect -f &#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27; a2ff36851466</span><br><span class="line">curl http://172.18.0.2:8929</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213225135054.png" alt="image-20250213225135054"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213225843681.png" alt="image-20250213225843681"></p>
+<h3 id="Docker的端口映射功能"><a href="#Docker的端口映射功能" class="headerlink" title="Docker的端口映射功能"></a>Docker的端口映射功能</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker port a2ff3685146</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250213225707019.png" alt="image-20250213225707019"></p>
+<h3 id="换镜像试一下命令行"><a href="#换镜像试一下命令行" class="headerlink" title="换镜像试一下命令行"></a>换镜像试一下命令行</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 8929:8929 -p 8022:8022 \</span><br><span class="line">--restart always --name gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab_docker/config:/etc/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab_docker/logs:/var/log/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab_docker/data:/var/opt/gitlab \</span><br><span class="line">--privileged=true gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214121014256.png" alt="image-20250214121014256"></p>
+<h3 id="修改容器配置"><a href="#修改容器配置" class="headerlink" title="修改容器配置"></a>修改容器配置</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it bdb560dbd2c2  /bin/bash</span><br><span class="line">vi /etc/gitlab/gitlab.rb</span><br><span class="line"></span><br><span class="line">可以直接复制</span><br><span class="line">external_url &#x27;http://192.168.128.151:8929&#x27;</span><br><span class="line">gitlab_rails[&#x27;gitlab_ssh_host&#x27;] = &#x27;192.168.128.151&#x27;</span><br><span class="line">gitlab_rails[&#x27;gitlab_shell_ssh_port&#x27;] = 2224  #这个在比较远下面705行</span><br><span class="line"></span><br><span class="line">在命令模式下（按Esc键进入），输入:set number或:set nu，然后按Enter键</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214122834387.png" alt="image-20250214122834387"></p>
+<h3 id="修改gitlab-yml"><a href="#修改gitlab-yml" class="headerlink" title="修改gitlab.yml"></a>修改gitlab.yml</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vi /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml</span><br><span class="line"></span><br><span class="line">host: 192.168.128.151</span><br><span class="line">port: 8929</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214130933080.png" alt="image-20250214130933080"></p>
+<h3 id="重新启动gitlab服务"><a href="#重新启动gitlab服务" class="headerlink" title="重新启动gitlab服务"></a>重新启动gitlab服务</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl restart</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214123125211.png" alt="image-20250214123125211"></p>
+<h2 id="原因，一种解决办法"><a href="#原因，一种解决办法" class="headerlink" title="原因，一种解决办法"></a>原因，一种解决办法</h2><h3 id="使用命令行加-h-192-168-128-151"><a href="#使用命令行加-h-192-168-128-151" class="headerlink" title="使用命令行加-h 192.168.128.151"></a>使用命令行加-h 192.168.128.151</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run -d \</span><br><span class="line">-h 192.168.128.151 \</span><br><span class="line">-p 8089:8089 -p 8022:8022 \</span><br><span class="line">--restart always --name gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab_docker/config:/etc/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab_docker/logs:/var/log/gitlab \</span><br><span class="line">-v /usr/local/docker/gitlab_docker/data:/var/opt/gitlab \</span><br><span class="line">--privileged=true gitlab/gitlab-ce</span><br></pre></td></tr></table></figure>
+
+<p>映射端口-p 8089:8089 -p 8022:8022，需要修改vi &#x2F;etc&#x2F;gitlab&#x2F;gitlab.rb，vi &#x2F;opt&#x2F;gitlab&#x2F;embedded&#x2F;service&#x2F;gitlab-rails&#x2F;config&#x2F;gitlab.yml，</p>
+<p>（最好使用默认80&#x2F;22， -p 8089:80 -p 8022:22），加 -h 192.168.128.151，gitlab-ctl restart重启还不行，<strong>需要退出停止删除容器docker stop xxxxxxx，docker container prune，然后再次启动</strong>，docker logs -f f5042f1ecb3c</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[2025-02-14T07:19:43+00:00] INFO: templatesymlink[Create a gitlab.yml and create a symlink to Rails root] sending run action to execute[clear the gitlab-rails cache] (delayed)</span><br><span class="line">Recipe: gitlab::gitlab-rails</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214152355721.png" alt="image-20250214152355721"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214154920143.png" alt="image-20250214154920143"></p>
+<h2 id="查看gitlab默认密码"><a href="#查看gitlab默认密码" class="headerlink" title="查看gitlab默认密码"></a>查看gitlab默认密码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it 78020ec6add9 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214155050120.png" alt="image-20250214155050120"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root用户</span><br><span class="line">vi /etc/gitlab/initial_root_password</span><br><span class="line"></span><br><span class="line">50Bxv8sksGasgYgtOO0WvV9/GD8XFA7Y37wWfdFIVkg=</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214155124935.png" alt="image-20250214155124935"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214155227730.png" alt="image-20250214155227730"></p>
+<h3 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">50Bxv8sksGasgYgtOO0WvV9/GD8XFA7Y37wWfdFIVkg=</span><br><span class="line"></span><br><span class="line">MYgit@lab132</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214160205635.png" alt="image-20250214160205635"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250214160231589.png" alt="image-20250214160231589"></p>
+<h1 id="解决：docker-重启-挂起后端口又访问不到"><a href="#解决：docker-重启-挂起后端口又访问不到" class="headerlink" title="解决：docker 重启&#x2F;挂起后端口又访问不到"></a>解决：docker 重启&#x2F;挂起后端口又访问不到</h1><h3 id="排查原因："><a href="#排查原因：" class="headerlink" title="排查原因："></a>排查原因：</h3><h4 id="路由排查"><a href="#路由排查" class="headerlink" title="路由排查"></a>路由排查</h4><p>虚拟机挂起后少了两条路由，重启docker会重新添加，有时没有少路由还是不行**，不是这个原因**</p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250216151831276.png" alt="image-20250216151831276"></p>
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250216152712573.png" alt="image-20250216152712573"></p>
+<h4 id="查看docker-日志"><a href="#查看docker-日志" class="headerlink" title="查看docker 日志"></a>查看docker 日志</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tail -200f /var/log/messages</span><br><span class="line">sudo journalctl -u docker.service</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">msg=&quot;Failed to clean iptables rules for bridge network: COMMAND_FAILED: &#x27;/usr/sbin/ip6tables-restore -w -n&#x27; failed: ip6tables-restore: line 2 failed\n&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="方法一：清理docker0"><a href="#方法一：清理docker0" class="headerlink" title="方法一：清理docker0"></a>方法一：清理docker0</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">https://blog.csdn.net/weixin_43769253/article/details/127731123</span><br><span class="line">安装brctl</span><br><span class="line">yum install bridge-utils</span><br><span class="line"></span><br><span class="line">systemctl stop docker </span><br><span class="line">pkill docker</span><br><span class="line">iptables -t nat -F</span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> docker0 down</span><br><span class="line">brctl delbr docker0</span><br><span class="line">systemctl start docker</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">systemctl stop docker 			<span class="comment"># 停止docker 服务</span></span><br><span class="line">pkill docker 				<span class="comment"># 杀掉docker进程</span></span><br><span class="line">iptables -t nat -F 				<span class="comment"># 清理iptables</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> docker0 down 		<span class="comment"># 停止docker0网卡</span></span><br><span class="line">brctl delbr docker0 		<span class="comment"># 删除docker0网卡--重点！</span></span><br><span class="line">systemctl start docker 		<span class="comment"># 启动docker服务</span></span><br><span class="line">docker start xxxxxxx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="方法二：Docker-网络缓存问题"><a href="#方法二：Docker-网络缓存问题" class="headerlink" title="方法二：Docker 网络缓存问题"></a>方法二：Docker 网络缓存问题</h4><ul>
+<li><strong>原因</strong>：Docker 的网络配置可能缓存了错误的状态，导致容器无法通过 <code>docker0</code> 桥接网络访问。</li>
+<li><strong>清理 <code>docker0</code> 的作用</strong>：清理后，Docker 会重新初始化网络配置，清除缓存问题。</li>
+<li><strong>解决方法</strong>：<br>清理 Docker 的网络缓存：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker network prune</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p><img src="/Post-Asset-Folder/centos-docker-gitlab.assets/image-20250216142635401.png" alt="image-20250216142635401"></p>
+<h4 id="方法三：docker0-网络配置损坏"><a href="#方法三：docker0-网络配置损坏" class="headerlink" title="方法三：docker0 网络配置损坏"></a>方法三：docker0 网络配置损坏</h4><ul>
+<li><p><strong>原因</strong>：<code>docker0</code> 的配置可能在重启或某些操作后损坏，导致容器无法通过桥接网络与主机通信。</p>
+</li>
+<li><p><strong>清理 <code>docker0</code> 的作用</strong>：清理后，Docker 会重新生成 <code>docker0</code> 接口并恢复默认配置，修复网络连接。</p>
+</li>
+<li><p><strong>解决方法</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<p>或者手动清理并重启 Docker：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip link delete docker0</span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CI-CD/" rel="tag"># CI/CD</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/gitlab/" rel="tag"># gitlab</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/09/centos-docker-jenkins/" rel="prev" title="docker jenkins">
+                  <i class="fa fa-angle-left"></i> docker jenkins
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/09/Git%E5%91%BD%E4%BB%A4/" rel="next" title="Git命令">
+                  Git命令 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">夜落</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">21k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="50" alpha="0.2" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
