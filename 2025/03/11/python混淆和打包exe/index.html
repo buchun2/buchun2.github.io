@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"buchun2.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="python打包成exe文件，混淆防止反编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python混淆和打包exe">
+<meta property="og:url" content="https://buchun2.github.io/2025/03/11/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe/index.html">
+<meta property="og:site_name" content="夜落">
+<meta property="og:description" content="python打包成exe文件，混淆防止反编译">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://buchun2.github.io/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181506343.png">
+<meta property="og:image" content="https://buchun2.github.io/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181827471.png">
+<meta property="og:image" content="https://buchun2.github.io/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181547663.png">
+<meta property="article:published_time" content="2025-03-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-11T11:51:07.136Z">
+<meta property="article:author" content="夜落">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://buchun2.github.io/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181506343.png">
+
+
+<link rel="canonical" href="https://buchun2.github.io/2025/03/11/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://buchun2.github.io/2025/03/11/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe/","path":"2025/03/11/python混淆和打包exe/","title":"python混淆和打包exe"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python混淆和打包exe | 夜落</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">夜落</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">夜落的空间</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pyarmor"><span class="nav-number">1.</span> <span class="nav-text">Pyarmor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%89%93%E5%8C%85"><span class="nav-number">3.</span> <span class="nav-text">快速打包</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E6%89%93%E5%8C%85exe"><span class="nav-number">3.1.</span> <span class="nav-text">正常打包exe:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E6%B7%86%E5%90%8E%E6%89%93%E5%8C%85"><span class="nav-number">3.2.</span> <span class="nav-text">混淆后打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#new%E7%9B%AE%E5%BD%95%E6%89%A7%E8%A1%8C%E6%89%93%E5%8C%85"><span class="nav-number">3.3.</span> <span class="nav-text">new目录执行打包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.1.</span> <span class="nav-text">加版本信息</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">夜落</p>
+  <div class="site-description" itemprop="description">个人笔记</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/buchun2" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;buchun2" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://buchun2.github.io/2025/03/11/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="夜落">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="夜落">
+      <meta itemprop="description" content="个人笔记">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python混淆和打包exe | 夜落">
+      <meta itemprop="description" content="python打包成exe文件，混淆防止反编译">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python混淆和打包exe
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-11 00:00:00 / 修改时间：19:51:07" itemprop="dateCreated datePublished" datetime="2025-03-11T00:00:00+08:00">2025-03-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">python打包成exe文件，混淆防止反编译</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="Pyarmor"><a href="#Pyarmor" class="headerlink" title="Pyarmor"></a>Pyarmor</h2><p>Pyarmor是一个共享软件，试用版免费但存在功能限制（主要是加密代码不能超过 32 MB），个人够用了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pyarmor</span><br></pre></td></tr></table></figure>
+
+
+
+<p>混淆输出到new目录，生成混淆后的文件和pyarmor_runtime_000000目录，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyarmor gen -O new 123.py</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181506343.png" alt="image-20250311181506343"></p>
+<p>new目录下生成混淆后的脚本和目录pyarmor_runtime_000000，可以用，带上这个目录可以直接使用</p>
+<p><img src="/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181827471.png" alt="image-20250311181827471"></p>
+<p><img src="/images/python%E6%B7%B7%E6%B7%86%E5%92%8C%E6%89%93%E5%8C%85exe.assets/image-20250311181547663.png" alt="image-20250311181547663"></p>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-O PATH, --output PATH</span><br><span class="line">-e 过期日期</span><br></pre></td></tr></table></figure>
+
+<p>建议使用这个：<br>将30换成您希望脚本处于活动状态的天数。您也可以用一个确切的日期来代替。几天过后，脚本将过期。<br>加密脚本使用 NTP 服务器来验证是否过期，如果当前设备不能访问网络，会报错退出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyarmor gen -O aesenc -e 3 aesenc.py</span><br></pre></td></tr></table></figure>
+
+<p>您可以通过设置过去的日期来测试此功能。这将使运行脚本抛出一个错误。使用以下命令用过期日期对脚本进行混淆处理：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pyarmor gen -O aesenc -e 2022-01-01 main.py</span><br></pre></td></tr></table></figure>
+
+<p>如果不需要验证网络时间，可以在有效期前面增加前缀 . 表示检查本地时间。例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyarmor gen -O dist4 -e .30 foo.py</span><br><span class="line">pyarmor gen -O dist4 -e .2020-12-31 foo.py</span><br></pre></td></tr></table></figure>
+
+<p>绑定加密脚本到指定设备，如硬件信息如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">IPv4:                        128.16.4.10</span><br><span class="line">Enternet Addr:               00:16:3e:35:19:3d</span><br><span class="line">Hard Disk Serial Number:     HXS2000CN2A</span><br><span class="line"></span><br><span class="line">pyarmor gen -O dist5 -b 00:16:3e:35:19:3d foo.py</span><br><span class="line">pyarmor gen -O dist5 -b 128.16.4.10 foo.py</span><br><span class="line">pyarmor gen -O dist5 -b HXS2000CN2A foo.py</span><br><span class="line">pyarmor gen -O dist5 -b &quot;00:16:3e:35:19:3d HXS2000CN2A&quot; foo.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="快速打包"><a href="#快速打包" class="headerlink" title="快速打包"></a>快速打包</h2><h3 id="正常打包exe"><a href="#正常打包exe" class="headerlink" title="正常打包exe:"></a>正常打包exe:</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pip install pyinstaller</span><br><span class="line">pyinstaller -F --icon=my_icon.ico my_script.py     #加图标</span><br><span class="line"></span><br><span class="line">--noconsole  #不显示控制台</span><br><span class="line">#末尾加input代码，cmd窗口等待回车关闭</span><br><span class="line">input(&quot;等待回车关闭窗口.....&quot;)    </span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="混淆后打包"><a href="#混淆后打包" class="headerlink" title="混淆后打包"></a>混淆后打包</h3><p>先把import导入包列出来，后续参数–hidden-import使用</p>
+<p>imp.py和test.py放同一目录找出需要导的包python3 imp.py</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">#python3</span><br><span class="line"># -*- coding: utf-8 -*- </span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">def search_files(directory, pattern):</span><br><span class="line">    matched_files = []</span><br><span class="line"></span><br><span class="line">    for root, dirs, files in os.walk(directory):</span><br><span class="line">        for file in files:</span><br><span class="line">            if file.endswith(&quot;.py&quot;):</span><br><span class="line">                file_path = os.path.join(root, file)</span><br><span class="line">                with open(file_path, &quot;r&quot;,encoding=&#x27;utf-8&#x27;) as f:</span><br><span class="line">                    lines = f.readlines()</span><br><span class="line">                    for line_num, line in enumerate(lines, start=1):</span><br><span class="line">                        match = re.search(pattern, line)</span><br><span class="line">                        if match:</span><br><span class="line">                            matched_files.append((file_path, line_num, match.group(1)))</span><br><span class="line"></span><br><span class="line">    return matched_files</span><br><span class="line"></span><br><span class="line"># 指定目录和正则表达式模式</span><br><span class="line">directory = &quot;.&quot;</span><br><span class="line">pattern = r&quot;from\s+([\w\.]+)\s+import&quot;</span><br><span class="line"></span><br><span class="line"># 调用函数搜索匹配的文件和行</span><br><span class="line">matched_files = search_files(directory, pattern)</span><br><span class="line"></span><br><span class="line">imports = []</span><br><span class="line"># 打印匹配的文件路径、行号和匹配的数据</span><br><span class="line">for file_path, line_num, data in matched_files:</span><br><span class="line">    print(f&quot;File: &#123;file_path&#125;, Line: &#123;line_num&#125;&quot;)</span><br><span class="line">    print(data)</span><br><span class="line">    if data not in imports:</span><br><span class="line">        imports.append(data)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">print(&quot;--hidden-import&quot;, &quot; --hidden-import &quot;.join(imports))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="new目录执行打包"><a href="#new目录执行打包" class="headerlink" title="new目录执行打包"></a>new目录执行打包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pyinstaller -F --icon=D:\test\icon\fcp.ico --add-data &quot;pyarmor_runtime_000000;pyarmor_runtime_000000&quot; --hidden-import cryptography.hazmat.backends --hidden-import cryptography.hazmat.primitives.ciphers --hidden-import cryptography.hazmat.primitives.serialization --hidden-import cryptography.hazmat.primitives --hidden-import cryptography.hazmat.primitives.asymmetric 123.py</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后dist目录生成可执行文件直接使用</p>
+<h4 id="加版本信息"><a href="#加版本信息" class="headerlink" title="加版本信息"></a>加版本信息</h4><p>修改123.spec，其中的EXE里, 这一句添加<br>version&#x3D;”file_verison_info.txt”,</p>
+<p>file_verison_info.txt 示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"># UTF-8</span><br><span class="line">#</span><br><span class="line"># For more details about fixed file info &#x27;ffi&#x27; see:</span><br><span class="line"># http://msdn.microsoft.com/en-us/library/ms646997.aspx</span><br><span class="line">VSVersionInfo(</span><br><span class="line">  ffi=FixedFileInfo(</span><br><span class="line"># filevers and prodvers should be always a tuple with four items: (1, 2, 3, 4)</span><br><span class="line"># Set not needed items to zero 0.</span><br><span class="line">filevers=(0, 0, 2, 0),  # 文件版本</span><br><span class="line">prodvers=(0, 0, 1, 0),</span><br><span class="line"># Contains a bitmask that specifies the valid bits &#x27;flags&#x27;r</span><br><span class="line">mask=0x3f,</span><br><span class="line"># Contains a bitmask that specifies the Boolean attributes of the file.</span><br><span class="line">flags=0x0,</span><br><span class="line"># The operating system for which this file was designed.</span><br><span class="line"># 0x4 - NT and there is no need to change it.</span><br><span class="line">OS=0x4,</span><br><span class="line"># The general type of file.</span><br><span class="line"># 0x1 - the file is an application.</span><br><span class="line">fileType=0x1, # 类型</span><br><span class="line"># The function of the file.</span><br><span class="line"># 0x0 - the function is not defined for this fileType</span><br><span class="line">subtype=0x0,</span><br><span class="line"># Creation date and time stamp.</span><br><span class="line">date=(0, 0)</span><br><span class="line">),</span><br><span class="line">  kids=[</span><br><span class="line">StringFileInfo(</span><br><span class="line">  [</span><br><span class="line">  StringTable(</span><br><span class="line">    u&#x27;040904B0&#x27;,</span><br><span class="line">    [StringStruct(u&#x27;CompanyName&#x27;, u&#x27;bc个人学习专用工具有限公司&#x27;), </span><br><span class="line">    StringStruct(u&#x27;FileDescription&#x27;, u&#x27;xxxxxxx工具&#x27;),    # 文件说明</span><br><span class="line">    StringStruct(u&#x27;FileVersion&#x27;, u&#x27;0.2.0&#x27;),</span><br><span class="line">    StringStruct(u&#x27;InternalName&#x27;, u&#x27;SVsfefsfN&#x27;),</span><br><span class="line">    StringStruct(u&#x27;LegalCopyright&#x27;, u&#x27;becefq个人版权所有&#x27;), #版权</span><br><span class="line">    StringStruct(u&#x27;OriginalFilename&#x27;, u&#x27;test1234.exe&#x27;), #原始文件名</span><br><span class="line">    StringStruct(u&#x27;ProductName&#x27;, u&#x27;bcewfaf&#x27;),      #产品名称</span><br><span class="line">    StringStruct(u&#x27;ProductVersion&#x27;, u&#x27;0.2.0&#x27;)])    #产品版本</span><br><span class="line">  ]),</span><br><span class="line">VarFileInfo([VarStruct(u&#x27;Translation&#x27;, [2052, 1200])]) # 语言</span><br><span class="line">  ]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>然后重新编译</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pyinstaller 123.spec</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/03/11/sshpass%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/" rel="prev" title="SSH批量操作">
+                  <i class="fa fa-angle-left"></i> SSH批量操作
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2025/03/11/oracle%E7%9B%B2%E6%B3%A8/" rel="next" title="oracle盲注">
+                  oracle盲注 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">夜落</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">57k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">51 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script size="50" alpha="0.2" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
