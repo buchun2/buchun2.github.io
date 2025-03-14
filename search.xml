@@ -439,33 +439,6 @@
     
     
     <entry>
-      <title>SSH批量操作</title>
-      <link href="/2025/03/11/sshpass%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/"/>
-      <url>/2025/03/11/sshpass%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/</url>
-      
-        <content type="html"><![CDATA[<h2 id="sshpass"><a href="#sshpass" class="headerlink" title="sshpass"></a>sshpass</h2><p>sshpass 主要用于以下场景：</p><ul><li>‌<strong>批量操作</strong>‌：可以用于批量修改、添加日志清理工具的配置内容，进行批量修改基础数据等操作，且不影响生产环境。</li><li>‌<strong>自动化脚本</strong>‌：在 Shell 脚本中自动完成 SSH 连接和命令执行，避免了手动输入密码的繁琐过程。</li><li>‌<strong>远程管理</strong>‌：通过脚本自动化远程服务器的管理和维护任务，提高工作效率。</li></ul><h2 id="批量操作"><a href="#批量操作" class="headerlink" title="批量操作"></a>批量操作</h2><p>sshpass批量验证，可以验证密码是否正确，是否联网三种情况</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">port=22</span><br><span class="line">timeout=3</span><br><span class="line">cmd=&quot;curl www.baidu.com&quot;</span><br><span class="line">cmd2=&quot;exit&quot;</span><br><span class="line">logfile=&quot;/home/tmp/rs.txt&quot;</span><br><span class="line">exec &gt;$&#123;logfile&#125; ;</span><br><span class="line">cat ./ip2.txt | while read line</span><br><span class="line">do</span><br><span class="line">  HOST=`echo $&#123;line&#125;|cut -d &#x27;/&#x27; -f 1` ;</span><br><span class="line">  USER=`echo $&#123;line&#125;|cut -d &#x27;/&#x27; -f 2 `;</span><br><span class="line">  PASS=`echo $&#123;line&#125;|cut -d &#x27;/&#x27; -f 3`;</span><br><span class="line">  #echo $HOST</span><br><span class="line"> # echo $USER</span><br><span class="line">#  echo $PASS</span><br><span class="line">  echo &quot;========================================&quot;+$HOST+$USER&quot;===========================================&quot;</span><br><span class="line">  sshpass -p $PASS ssh -p $port -o StrictHostKeyChecking=no -o ConnectTimeout=$timeout $USER@$HOST &lt;&lt; EOF</span><br><span class="line">  curl --connect-timeout 10 www.baidu.com</span><br><span class="line">  echo &quot;9999999999999999&quot;</span><br><span class="line">  ifconfig  | grep &quot;inet addr&quot; | awk &#x27;&#123; print $2&#125;&#x27; |grep -v &quot;127.0.0.1&quot;</span><br><span class="line">  exit </span><br><span class="line">EOF</span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> sh </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> sh </tag>
-            
-            <tag> 批量 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>SSH批量验证-python</title>
       <link href="/2025/03/11/ssh%E6%89%B9%E9%87%8F%E9%AA%8C%E8%AF%81/"/>
       <url>/2025/03/11/ssh%E6%89%B9%E9%87%8F%E9%AA%8C%E8%AF%81/</url>
@@ -483,6 +456,33 @@
         <tags>
             
             <tag> python </tag>
+            
+            <tag> 批量 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SSH批量操作</title>
+      <link href="/2025/03/11/sshpass%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/"/>
+      <url>/2025/03/11/sshpass%E6%89%B9%E9%87%8F%E6%93%8D%E4%BD%9C/</url>
+      
+        <content type="html"><![CDATA[<h2 id="sshpass"><a href="#sshpass" class="headerlink" title="sshpass"></a>sshpass</h2><p>sshpass 主要用于以下场景：</p><ul><li>‌<strong>批量操作</strong>‌：可以用于批量修改、添加日志清理工具的配置内容，进行批量修改基础数据等操作，且不影响生产环境。</li><li>‌<strong>自动化脚本</strong>‌：在 Shell 脚本中自动完成 SSH 连接和命令执行，避免了手动输入密码的繁琐过程。</li><li>‌<strong>远程管理</strong>‌：通过脚本自动化远程服务器的管理和维护任务，提高工作效率。</li></ul><h2 id="批量操作"><a href="#批量操作" class="headerlink" title="批量操作"></a>批量操作</h2><p>sshpass批量验证，可以验证密码是否正确，是否联网三种情况</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">port=22</span><br><span class="line">timeout=3</span><br><span class="line">cmd=&quot;curl www.baidu.com&quot;</span><br><span class="line">cmd2=&quot;exit&quot;</span><br><span class="line">logfile=&quot;/home/tmp/rs.txt&quot;</span><br><span class="line">exec &gt;$&#123;logfile&#125; ;</span><br><span class="line">cat ./ip2.txt | while read line</span><br><span class="line">do</span><br><span class="line">  HOST=`echo $&#123;line&#125;|cut -d &#x27;/&#x27; -f 1` ;</span><br><span class="line">  USER=`echo $&#123;line&#125;|cut -d &#x27;/&#x27; -f 2 `;</span><br><span class="line">  PASS=`echo $&#123;line&#125;|cut -d &#x27;/&#x27; -f 3`;</span><br><span class="line">  #echo $HOST</span><br><span class="line"> # echo $USER</span><br><span class="line">#  echo $PASS</span><br><span class="line">  echo &quot;========================================&quot;+$HOST+$USER&quot;===========================================&quot;</span><br><span class="line">  sshpass -p $PASS ssh -p $port -o StrictHostKeyChecking=no -o ConnectTimeout=$timeout $USER@$HOST &lt;&lt; EOF</span><br><span class="line">  curl --connect-timeout 10 www.baidu.com</span><br><span class="line">  echo &quot;9999999999999999&quot;</span><br><span class="line">  ifconfig  | grep &quot;inet addr&quot; | awk &#x27;&#123; print $2&#125;&#x27; |grep -v &quot;127.0.0.1&quot;</span><br><span class="line">  exit </span><br><span class="line">EOF</span><br><span class="line">done</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> sh </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sh </tag>
             
             <tag> 批量 </tag>
             
