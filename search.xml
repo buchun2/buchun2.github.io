@@ -283,6 +283,31 @@
     
     
     <entry>
+      <title>sh转可执行文件</title>
+      <link href="/2025/03/12/sh%E7%BC%96%E8%AF%91%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/"/>
+      <url>/2025/03/12/sh%E7%BC%96%E8%AF%91%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="编译c"><a href="#编译c" class="headerlink" title="编译c"></a>编译c</h2><p>编译shellc源码，再对目标文件编译CheckL.sh</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">https://gitee.com/chenzhch/shellc/tree/master</span><br><span class="line"></span><br><span class="line">cc -s shellc.c -O2 -o shellc</span><br><span class="line"></span><br><span class="line">./shellc CheckL.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="编译elf"><a href="#编译elf" class="headerlink" title="编译elf"></a>编译elf</h2><p>得到CheckL.sh.c，继续</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc CheckL.sh.c -s -O2 -o CheckL.sh.x -lpthread</span><br></pre></td></tr></table></figure><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./CheckL.sh.x</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> sh </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> sh </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>reg注册表相关</title>
       <link href="/2025/03/12/reg%E6%B3%A8%E5%86%8C%E8%A1%A8%E7%9B%B8%E5%85%B3/"/>
       <url>/2025/03/12/reg%E6%B3%A8%E5%86%8C%E8%A1%A8%E7%9B%B8%E5%85%B3/</url>
@@ -302,31 +327,6 @@
             <tag> bat </tag>
             
             <tag> regedit </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>sh转可执行文件</title>
-      <link href="/2025/03/12/sh%E7%BC%96%E8%AF%91%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/"/>
-      <url>/2025/03/12/sh%E7%BC%96%E8%AF%91%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6/</url>
-      
-        <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h2 id="编译c"><a href="#编译c" class="headerlink" title="编译c"></a>编译c</h2><p>编译shellc源码，再对目标文件编译CheckL.sh</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">https://gitee.com/chenzhch/shellc/tree/master</span><br><span class="line"></span><br><span class="line">cc -s shellc.c -O2 -o shellc</span><br><span class="line"></span><br><span class="line">./shellc CheckL.sh</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="编译elf"><a href="#编译elf" class="headerlink" title="编译elf"></a>编译elf</h2><p>得到CheckL.sh.c，继续</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc CheckL.sh.c -s -O2 -o CheckL.sh.x -lpthread</span><br></pre></td></tr></table></figure><h2 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./CheckL.sh.x</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> sh </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> sh </tag>
             
         </tags>
       
@@ -657,6 +657,33 @@
     
     
     <entry>
+      <title>appscan登录扫描-手工探索扫描</title>
+      <link href="/2025/03/10/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F/"/>
+      <url>/2025/03/10/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="新建扫描-常规扫描"><a href="#新建扫描-常规扫描" class="headerlink" title="新建扫描-常规扫描"></a>新建扫描-常规扫描</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215222232.png" alt="image-20250310215222232"></p><h2 id="本机浏览器代理抓链接"><a href="#本机浏览器代理抓链接" class="headerlink" title="本机浏览器代理抓链接"></a>本机浏览器代理抓链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215246078.png" alt="image-20250310215246078"></p><h2 id="记录访问"><a href="#记录访问" class="headerlink" title="记录访问"></a>记录访问</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215301380.png" alt="image-20250310215301380"></p><h2 id="开启代理，进行登录后的链接抓取"><a href="#开启代理，进行登录后的链接抓取" class="headerlink" title="开启代理，进行登录后的链接抓取"></a>开启代理，进行登录后的链接抓取</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215324793.png" alt="image-20250310215324793"></p><h2 id="筛选目标链接"><a href="#筛选目标链接" class="headerlink" title="筛选目标链接"></a>筛选目标链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215336590.png" alt="image-20250310215336590"></p><h2 id="删除多余链接"><a href="#删除多余链接" class="headerlink" title="删除多余链接"></a>删除多余链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215351907.png" alt="image-20250310215351907"></p><h2 id="开始抓取链接"><a href="#开始抓取链接" class="headerlink" title="开始抓取链接"></a>开始抓取链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215403453.png" alt="image-20250310215403453"></p><h2 id="多点击链接，手动探索，获取扫描对象"><a href="#多点击链接，手动探索，获取扫描对象" class="headerlink" title="多点击链接，手动探索，获取扫描对象"></a>多点击链接，手动探索，获取扫描对象</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215415989.png" alt="image-20250310215415989"></p><h2 id="冗余调整后-开始仅测试"><a href="#冗余调整后-开始仅测试" class="headerlink" title="冗余调整后-开始仅测试"></a>冗余调整后-开始仅测试</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215429185.png" alt="image-20250310215429185"></p><h2 id="扫描-仅测试"><a href="#扫描-仅测试" class="headerlink" title="扫描-仅测试"></a>扫描-仅测试</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215443317.png" alt="image-20250310215443317"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 外网渗透 </category>
+          
+          <category> TOOLS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> appscan </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>XSS通过js获取url接口内容</title>
       <link href="/2025/03/10/XSS%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96url%E6%8E%A5%E5%8F%A3%E5%86%85%E5%AE%B9/"/>
       <url>/2025/03/10/XSS%E9%80%9A%E8%BF%87js%E8%8E%B7%E5%8F%96url%E6%8E%A5%E5%8F%A3%E5%86%85%E5%AE%B9/</url>
@@ -678,33 +705,6 @@
         <tags>
             
             <tag> XSS </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>appscan登录扫描-手工探索扫描</title>
-      <link href="/2025/03/10/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F/"/>
-      <url>/2025/03/10/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F/</url>
-      
-        <content type="html"><![CDATA[<h2 id="新建扫描-常规扫描"><a href="#新建扫描-常规扫描" class="headerlink" title="新建扫描-常规扫描"></a>新建扫描-常规扫描</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215222232.png" alt="image-20250310215222232"></p><h2 id="本机浏览器代理抓链接"><a href="#本机浏览器代理抓链接" class="headerlink" title="本机浏览器代理抓链接"></a>本机浏览器代理抓链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215246078.png" alt="image-20250310215246078"></p><h2 id="记录访问"><a href="#记录访问" class="headerlink" title="记录访问"></a>记录访问</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215301380.png" alt="image-20250310215301380"></p><h2 id="开启代理，进行登录后的链接抓取"><a href="#开启代理，进行登录后的链接抓取" class="headerlink" title="开启代理，进行登录后的链接抓取"></a>开启代理，进行登录后的链接抓取</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215324793.png" alt="image-20250310215324793"></p><h2 id="筛选目标链接"><a href="#筛选目标链接" class="headerlink" title="筛选目标链接"></a>筛选目标链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215336590.png" alt="image-20250310215336590"></p><h2 id="删除多余链接"><a href="#删除多余链接" class="headerlink" title="删除多余链接"></a>删除多余链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215351907.png" alt="image-20250310215351907"></p><h2 id="开始抓取链接"><a href="#开始抓取链接" class="headerlink" title="开始抓取链接"></a>开始抓取链接</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215403453.png" alt="image-20250310215403453"></p><h2 id="多点击链接，手动探索，获取扫描对象"><a href="#多点击链接，手动探索，获取扫描对象" class="headerlink" title="多点击链接，手动探索，获取扫描对象"></a>多点击链接，手动探索，获取扫描对象</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215415989.png" alt="image-20250310215415989"></p><h2 id="冗余调整后-开始仅测试"><a href="#冗余调整后-开始仅测试" class="headerlink" title="冗余调整后-开始仅测试"></a>冗余调整后-开始仅测试</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215429185.png" alt="image-20250310215429185"></p><h2 id="扫描-仅测试"><a href="#扫描-仅测试" class="headerlink" title="扫描-仅测试"></a>扫描-仅测试</h2><p><img src="/images/appscan%E7%99%BB%E5%BD%95%E6%89%AB%E6%8F%8F-%E6%89%8B%E5%B7%A5%E6%8E%A2%E7%B4%A2%E6%89%AB%E6%8F%8F.assets/image-20250310215443317.png" alt="image-20250310215443317"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 外网渗透 </category>
-          
-          <category> TOOLS </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> appscan </tag>
             
         </tags>
       
@@ -852,6 +852,33 @@
     
     
     <entry>
+      <title>centos配置</title>
+      <link href="/2025/03/09/centos%E5%AE%89%E8%A3%85/"/>
+      <url>/2025/03/09/centos%E5%AE%89%E8%A3%85/</url>
+      
+        <content type="html"><![CDATA[<h1 id="centos安装"><a href="#centos安装" class="headerlink" title="centos安装"></a>centos安装</h1><h2 id="ip-addr-没有IP"><a href="#ip-addr-没有IP" class="headerlink" title="ip addr 没有IP"></a>ip addr 没有IP</h2><p>修改</p><p>#vi &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</p><p><strong>bootproto&#x3D;dhcp</strong></p><p><strong>onboot&#x3D;yes</strong></p><p>#systemctl restart network</p><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212154947256.png" alt="image-20250212154947256"></p><p>固定IP</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=192.168.128.152 </span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line"></span><br><span class="line">systemctl restart network  </span><br></pre></td></tr></table></figure><h2 id="Linux系统yum安装报错Cannot-find-a-valid-baseurl-for-repo"><a href="#Linux系统yum安装报错Cannot-find-a-valid-baseurl-for-repo" class="headerlink" title="Linux系统yum安装报错Cannot find a valid baseurl for repo"></a>Linux系统yum安装报错Cannot find a valid baseurl for repo</h2><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212155250650.png" alt="image-20250212155250650"></p><h4 id="更换阿里云源ok"><a href="#更换阿里云源ok" class="headerlink" title="更换阿里云源ok"></a>更换阿里云源ok</h4><p>vi &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo</p><p>baseurl&#x3D;<a href="http://mirrors.aliyun.com/centos/">http://mirrors.aliyun.com/centos/</a></p><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212160207098.png" alt="image-20250212160207098"></p><p>yum install vim</p><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212160327213.png" alt="image-20250212160327213"></p><p>yum install net-tools</p><h2 id="ssh开启"><a href="#ssh开启" class="headerlink" title="ssh开启"></a>ssh开启</h2><h3 id="1-安装OpenSSH服务器"><a href="#1-安装OpenSSH服务器" class="headerlink" title="1. 安装OpenSSH服务器"></a>1. 安装OpenSSH服务器</h3><p>首先，确保你的CentOS系统上已经安装了OpenSSH服务器。可以通过以下命令来安装：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh-server -y</span><br></pre></td></tr></table></figure><h3 id="2-设置端口和允许root登录"><a href="#2-设置端口和允许root登录" class="headerlink" title="2.设置端口和允许root登录"></a>2.设置端口和允许root登录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure><h3 id="3-启动SSH服务"><a href="#3-启动SSH服务" class="headerlink" title="3. 启动SSH服务"></a>3. 启动SSH服务</h3><p>安装完成后，你可以使用以下命令来启动SSH服务：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start sshd </span><br></pre></td></tr></table></figure><h3 id="4-设置SSH服务开机自启"><a href="#4-设置SSH服务开机自启" class="headerlink" title="4. 设置SSH服务开机自启"></a>4. 设置SSH服务开机自启</h3><p>为了确保每次系统启动时SSH服务都能自动启动，你需要设置它为开机自启：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable sshd</span><br></pre></td></tr></table></figure><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212161906652.png" alt="image-20250212161906652"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> DevOps环境搭建 </category>
+          
+          <category> centos </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> centos </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>docker jenkins</title>
       <link href="/2025/03/09/centos-docker-jenkins/"/>
       <url>/2025/03/09/centos-docker-jenkins/</url>
@@ -873,33 +900,6 @@
             <tag> CI/CD </tag>
             
             <tag> jenkins </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>centos配置</title>
-      <link href="/2025/03/09/centos%E5%AE%89%E8%A3%85/"/>
-      <url>/2025/03/09/centos%E5%AE%89%E8%A3%85/</url>
-      
-        <content type="html"><![CDATA[<h1 id="centos安装"><a href="#centos安装" class="headerlink" title="centos安装"></a>centos安装</h1><h2 id="ip-addr-没有IP"><a href="#ip-addr-没有IP" class="headerlink" title="ip addr 没有IP"></a>ip addr 没有IP</h2><p>修改</p><p>#vi &#x2F;etc&#x2F;sysconfig&#x2F;network-scripts&#x2F;ifcfg-ens33</p><p><strong>bootproto&#x3D;dhcp</strong></p><p><strong>onboot&#x3D;yes</strong></p><p>#systemctl restart network</p><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212154947256.png" alt="image-20250212154947256"></p><p>固定IP</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=192.168.128.152 </span><br><span class="line">NETMASK=255.255.255.0</span><br><span class="line"></span><br><span class="line">systemctl restart network  </span><br></pre></td></tr></table></figure><h2 id="Linux系统yum安装报错Cannot-find-a-valid-baseurl-for-repo"><a href="#Linux系统yum安装报错Cannot-find-a-valid-baseurl-for-repo" class="headerlink" title="Linux系统yum安装报错Cannot find a valid baseurl for repo"></a>Linux系统yum安装报错Cannot find a valid baseurl for repo</h2><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212155250650.png" alt="image-20250212155250650"></p><h4 id="更换阿里云源ok"><a href="#更换阿里云源ok" class="headerlink" title="更换阿里云源ok"></a>更换阿里云源ok</h4><p>vi &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo</p><p>baseurl&#x3D;<a href="http://mirrors.aliyun.com/centos/">http://mirrors.aliyun.com/centos/</a></p><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212160207098.png" alt="image-20250212160207098"></p><p>yum install vim</p><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212160327213.png" alt="image-20250212160327213"></p><p>yum install net-tools</p><h2 id="ssh开启"><a href="#ssh开启" class="headerlink" title="ssh开启"></a>ssh开启</h2><h3 id="1-安装OpenSSH服务器"><a href="#1-安装OpenSSH服务器" class="headerlink" title="1. 安装OpenSSH服务器"></a>1. 安装OpenSSH服务器</h3><p>首先，确保你的CentOS系统上已经安装了OpenSSH服务器。可以通过以下命令来安装：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install openssh-server -y</span><br></pre></td></tr></table></figure><h3 id="2-设置端口和允许root登录"><a href="#2-设置端口和允许root登录" class="headerlink" title="2.设置端口和允许root登录"></a>2.设置端口和允许root登录</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ssh/sshd_config</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure><h3 id="3-启动SSH服务"><a href="#3-启动SSH服务" class="headerlink" title="3. 启动SSH服务"></a>3. 启动SSH服务</h3><p>安装完成后，你可以使用以下命令来启动SSH服务：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start sshd </span><br></pre></td></tr></table></figure><h3 id="4-设置SSH服务开机自启"><a href="#4-设置SSH服务开机自启" class="headerlink" title="4. 设置SSH服务开机自启"></a>4. 设置SSH服务开机自启</h3><p>为了确保每次系统启动时SSH服务都能自动启动，你需要设置它为开机自启：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable sshd</span><br></pre></td></tr></table></figure><p><img src="/images/centos%E5%AE%89%E8%A3%85.assets/image-20250212161906652.png" alt="image-20250212161906652"></p>]]></content>
-      
-      
-      <categories>
-          
-          <category> DevOps环境搭建 </category>
-          
-          <category> centos </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> centos </tag>
             
         </tags>
       
